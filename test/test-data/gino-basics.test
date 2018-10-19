@@ -1,0 +1,58 @@
+[case testCreate]
+from typing import TYPE_CHECKING, Any
+from gino import Gino
+from gino.crud import CRUDModel
+from datetime import datetime
+
+db = Gino()
+
+if TYPE_CHECKING:
+    Base = CRUDModel
+else:
+    Base = db.Model
+
+class Model(Base):
+    __tablename__ = 'model'
+
+    id = db.Column(db.Integer(), primary_key=True)
+    created_at = db.Column(db.DateTime())
+
+async def main() -> None:
+    model = await Model.create()
+    reveal_type(model)  # E: Revealed type is 'main.Model*'
+    reveal_type(model.id)  # E: Revealed type is 'builtins.int*'
+
+    model = Model()
+    model.created_at = datetime.now()
+    await model.create()
+[out]
+
+[case testRetrieve]
+from typing import TYPE_CHECKING, Any
+from gino import Gino
+from gino.crud import CRUDModel
+from datetime import datetime
+
+db = Gino()
+
+if TYPE_CHECKING:
+    Base = CRUDModel
+else:
+    Base = db.Model
+
+class Model(Base):
+    __tablename__ = 'model'
+
+    id = db.Column(db.Integer(), primary_key=True)
+    created_at = db.Column(db.DateTime())
+
+async def main() -> None:
+    one = await Model.get(1)
+    reveal_type(one)  # E: Revealed type is 'Union[main.Model*, None]'
+
+    all = await Model.query.gino.all()
+    reveal_type(all)  # E: Revealed type is 'builtins.list*[main.Model*]'
+
+    first = await Model.query.gino.first()
+    reveal_type(first)  # E: Revealed type is 'Union[main.Model*, None]'
+[out]
