@@ -10,7 +10,8 @@ class AsyncVisitor:
 
 class AsyncSchemaGenerator(AsyncVisitor, SchemaGenerator):
     async def visit_metadata(self, metadata: Any) -> None: ...  # type: ignore
-    async def visit_table(self, table: Any, create_ok: bool = ..., include_foreign_key_constraints: Optional[Any] = ..., _is_metadata_operation: bool = ...): ...  # type: ignore
+    async def visit_table(self, table: Any, create_ok: bool = ...,  # type: ignore
+                          include_foreign_key_constraints: Optional[Any] = ..., _is_metadata_operation: bool = ...): ...
     async def visit_foreign_key_constraint(self, constraint: Any): ...  # type: ignore
     async def visit_sequence(self, sequence: Any, create_ok: bool = ...): ...
     async def visit_index(self, index: Any) -> None: ...  # type: ignore
