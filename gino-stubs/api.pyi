@@ -1,14 +1,15 @@
 import sqlalchemy as sa
-from sqlalchemy.sql.elements import BooleanClauseList, ClauseElement, UnaryExpression, ColumnElement
+from sqlalchemy.sql.elements import BooleanClauseList, ClauseElement, UnaryExpression, ColumnElement, TextClause, BindParameter
 from sqlalchemy.sql.type_api import TypeEngine
 from sqlalchemy.sql.expression import Executable
+from sqlalchemy.engine.base import Engine, Connection
 import asyncio
 from .declarative import declared_attr as gino_declared_attr, Model as GinoModel
 from .schema import GinoSchemaVisitor
 from .engine import GinoEngine, StatementType, StatementAndCompiledType, _AcquireContext
 from .transaction import GinoTransaction
 from . import json_support
-from typing import Any, Optional, Tuple, Type, ClassVar, Set, TypeVar, Generic, Generator, List
+from typing import Any, Optional, Union, Tuple, Iterable, Mapping, Type, ClassVar, Set, TypeVar, Generic, Generator, List
 
 _T = TypeVar('_T')
 _CM = TypeVar('_CM', bound=GinoExecutor)
@@ -148,8 +149,10 @@ class Gino(sa.MetaData):
     alias = sa.alias
     all_ = sa.all_
 
-    def and_(self, *clauses: ClauseElement) -> BooleanClauseList: ...
-    def asc(self, column: ColumnElement[Any]) -> UnaryExpression[None]: ...
+    @classmethod
+    def and_(cls, *clauses: ClauseElement) -> BooleanClauseList: ...
+    @classmethod
+    def asc(cls, column: ColumnElement[Any]) -> UnaryExpression[None]: ...
     between = sa.between
     bindparam = sa.bindparam
     case = sa.case
@@ -157,8 +160,11 @@ class Gino(sa.MetaData):
     collate = sa.collate
     column = sa.column
     delete = sa.delete
-    def desc(self, column: ColumnElement[Any]) -> UnaryExpression[None]: ...
-    def distinct(self, column: ColumnElement[_T]) -> UnaryExpression[_T]: ...
+
+    @classmethod
+    def desc(cls, column: ColumnElement[Any]) -> UnaryExpression[None]: ...
+    @classmethod
+    def distinct(cls, column: ColumnElement[_T]) -> UnaryExpression[_T]: ...
     except_ = sa.except_
     except_all = sa.except_all
     exists = sa.exists
@@ -179,14 +185,20 @@ class Gino(sa.MetaData):
     null = sa.null
     # nullsfirst = sa.nullsfirst
     # nullslast = sa.nullslast
-    def or_(self, *clauses: ClauseElement) -> BooleanClauseList: ...
+    @classmethod
+    def or_(cls, *clauses: ClauseElement) -> BooleanClauseList: ...
     outerjoin = sa.outerjoin
     outparam = sa.outparam
     select = sa.select
     subquery = sa.subquery
     table = sa.table
     tablesample = sa.tablesample
-    text = sa.text
+
+    @classmethod
+    def text(cls, text: str, bind: Optional[Union[Engine, Connection]] = ...,
+             bindparams: Optional[Iterable[BindParameter[Any]]] = ...,
+             typemap: Optional[Mapping[str, Union[TypeEngine[Any], Type[TypeEngine[Any]]]]] = ...,
+             autocommit: Optional[bool] = ...) -> TextClause: ...
     true = sa.true
     tuple_ = sa.tuple_
     type_coerce = sa.type_coerce
