@@ -58,4 +58,8 @@ async def main() -> None:
 
     first = await Model.query.gino.first()
     reveal_type(first)  # E: Revealed type is 'Union[main.Model*, None]'
+
+    async with db.transaction():
+        async for model in Model.query.gino.iterate():
+            reveal_type(model)  # E: Revealed type is 'main.Model*'
 [out]
