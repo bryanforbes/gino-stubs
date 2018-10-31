@@ -1,5 +1,5 @@
 -r external/mypy/test-requirements.txt
 -e external/mypy
--e git+https://github.com/bryanforbes/sqlalchemy-stubs.git@add-sql-typings-2#egg=sqlalchemy-stubs
+-e git+https://github.com/dropbox/sqlalchemy-stubs.git@8b45fc4345778e3f08e8a3b53ff71aaaa775e632#egg=sqlalchemy-stubs
 -e .
 asyncpg
