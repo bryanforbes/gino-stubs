@@ -3,3 +3,6 @@
 -e git+https://github.com/dropbox/sqlalchemy-stubs.git@8b45fc4345778e3f08e8a3b53ff71aaaa775e632#egg=sqlalchemy-stubs
 -e .
 asyncpg
+black
+pre-commit
+flake8-per-file-ignores

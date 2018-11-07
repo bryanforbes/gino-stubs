@@ -1,5 +1,12 @@
 import sqlalchemy as sa
-from sqlalchemy.sql.elements import BooleanClauseList, ClauseElement, UnaryExpression, ColumnElement, TextClause, BindParameter
+from sqlalchemy.sql.elements import (
+    BooleanClauseList,
+    ClauseElement,
+    UnaryExpression,
+    ColumnElement,
+    TextClause,
+    BindParameter,
+)
 from sqlalchemy.sql.type_api import TypeEngine
 from sqlalchemy.sql.expression import Executable
 from sqlalchemy.engine.base import Engine, Connection
@@ -10,7 +17,21 @@ from .engine import GinoEngine, StatementType, StatementAndCompiledType, _Acquir
 from .transaction import GinoTransaction
 from . import json_support
 from .dialects.base import _IterableCursor
-from typing import Any, Optional, Union, Tuple, Iterable, Mapping, Type, ClassVar, Set, TypeVar, Generic, Generator, List
+from typing import (
+    Any,
+    Optional,
+    Union,
+    Tuple,
+    Iterable,
+    Mapping,
+    Type,
+    ClassVar,
+    Set,
+    TypeVar,
+    Generic,
+    Generator,
+    List,
+)
 
 _T = TypeVar('_T')
 _CM = TypeVar('_CM', bound=GinoExecutor)
@@ -29,12 +50,10 @@ class GinoExecutor(Generic[_T]):
     async def status(self, *multiparams: Any, **params: Any) -> Any: ...
     def iterate(self, *multiparams: Any, **params: Any) -> _IterableCursor[_T]: ...
 
-
 class _BindContext:
     def __init__(self, *args: Any) -> None: ...
     async def __aenter__(self) -> GinoEngine: ...
     async def __aexit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None: ...
-
 
 class Gino(sa.MetaData):
     model_base_classes: ClassVar[Tuple[Type[Any], ...]]
@@ -43,38 +62,48 @@ class Gino(sa.MetaData):
     no_delegate: ClassVar[Set[str]]
     declared_attr = gino_declared_attr
     bind: GinoEngine
-    def __init__(self, bind: Optional[GinoEngine] = ...,
-                 model_classes: Optional[Tuple[Type[Any], ...]] = ..., query_ext: bool = ...,
-                 schema_ext: bool = ..., ext: bool = ..., **kwargs: Any) -> None: ...
+    def __init__(
+        self,
+        bind: Optional[GinoEngine] = ...,
+        model_classes: Optional[Tuple[Type[Any], ...]] = ...,
+        query_ext: bool = ...,
+        schema_ext: bool = ...,
+        ext: bool = ...,
+        **kwargs: Any,
+    ) -> None: ...
     @property
     def Model(self) -> Type[GinoModel]: ...
-
-    async def set_bind(self, bind: str, loop: Optional[asyncio.AbstractEventLoop] = ...,
-                       **kwargs: Any) -> GinoEngine: ...
-
+    async def set_bind(
+        self, bind: str, loop: Optional[asyncio.AbstractEventLoop] = ..., **kwargs: Any
+    ) -> GinoEngine: ...
     def pop_bind(self) -> Optional[GinoEngine]: ...
-
-    def with_bind(self, bind: GinoEngine, loop: Optional[asyncio.AbstractEventLoop] = ...,
-                  **kwargs: Any) -> _BindContext: ...
-
+    def with_bind(
+        self,
+        bind: GinoEngine,
+        loop: Optional[asyncio.AbstractEventLoop] = ...,
+        **kwargs: Any,
+    ) -> _BindContext: ...
     def __await__(self) -> Generator[Any, None, Gino]: ...
-
-    def compile(self, elem: StatementType, *multiparams: Any, **params: Any) -> Tuple[str, Any]: ...
-
-    async def all(self, clause: StatementAndCompiledType, *multiparams: Any, **params: Any) -> Any: ...
-
-    async def first(self, clause: StatementAndCompiledType, *multiparams: Any, **params: Any) -> Any: ...
-
-    async def scalar(self, clause: StatementAndCompiledType, *multiparams: Any, **params: Any) -> Any: ...
-
-    async def status(self, clause: StatementAndCompiledType, *multiparams: Any, **params: Any) -> Any: ...
-
-    def iterate(self, clause: Any, *multiparams: Any, **params: Any) -> _IterableCursor[Any]: ...
-
+    def compile(
+        self, elem: StatementType, *multiparams: Any, **params: Any
+    ) -> Tuple[str, Any]: ...
+    async def all(
+        self, clause: StatementAndCompiledType, *multiparams: Any, **params: Any
+    ) -> Any: ...
+    async def first(
+        self, clause: StatementAndCompiledType, *multiparams: Any, **params: Any
+    ) -> Any: ...
+    async def scalar(
+        self, clause: StatementAndCompiledType, *multiparams: Any, **params: Any
+    ) -> Any: ...
+    async def status(
+        self, clause: StatementAndCompiledType, *multiparams: Any, **params: Any
+    ) -> Any: ...
+    def iterate(
+        self, clause: Any, *multiparams: Any, **params: Any
+    ) -> _IterableCursor[Any]: ...
     def acquire(self, *args: Any, **kwargs: Any) -> _AcquireContext: ...
-
     def transaction(self, *args: Any, **kwargs: Any) -> GinoTransaction: ...
-
     # from json_support
     JSONProperty = json_support.JSONProperty
     StringProperty = json_support.StringProperty
@@ -149,7 +178,6 @@ class Gino(sa.MetaData):
 
     alias = sa.alias
     all_ = sa.all_
-
     @classmethod
     def and_(cls, *clauses: ClauseElement) -> BooleanClauseList: ...
     @classmethod
@@ -161,7 +189,6 @@ class Gino(sa.MetaData):
     collate = sa.collate
     column = sa.column
     delete = sa.delete
-
     @classmethod
     def desc(cls, column: ColumnElement[Any]) -> UnaryExpression[None]: ...
     @classmethod
@@ -194,12 +221,17 @@ class Gino(sa.MetaData):
     subquery = sa.subquery
     table = sa.table
     tablesample = sa.tablesample
-
     @classmethod
-    def text(cls, text: str, bind: Optional[Union[Engine, Connection]] = ...,
-             bindparams: Optional[Iterable[BindParameter[Any]]] = ...,
-             typemap: Optional[Mapping[str, Union[TypeEngine[Any], Type[TypeEngine[Any]]]]] = ...,
-             autocommit: Optional[bool] = ...) -> TextClause: ...
+    def text(
+        cls,
+        text: str,
+        bind: Optional[Union[Engine, Connection]] = ...,
+        bindparams: Optional[Iterable[BindParameter[Any]]] = ...,
+        typemap: Optional[
+            Mapping[str, Union[TypeEngine[Any], Type[TypeEngine[Any]]]]
+        ] = ...,
+        autocommit: Optional[bool] = ...,
+    ) -> TextClause: ...
     true = sa.true
     tuple_ = sa.tuple_
     type_coerce = sa.type_coerce

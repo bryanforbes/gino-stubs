@@ -26,10 +26,7 @@ class GinoDataSuite(DataSuite):
     def run_case(self, testcase: DataDrivenTestCase) -> None:
 
         assert testcase.old_cwd is not None, "test was not properly set up"
-        mypy_cmdline = [
-            '--show-traceback',
-            '--no-silence-site-packages',
-        ]
+        mypy_cmdline = ['--show-traceback', '--no-silence-site-packages']
         py2 = testcase.name.lower().endswith('python2')
         if py2:
             if try_find_python2_interpreter() is None:
@@ -37,8 +34,9 @@ class GinoDataSuite(DataSuite):
                 return
             mypy_cmdline.append('--py2')
         else:
-            mypy_cmdline.append('--python-version={}'.format('.'.join(map(str,
-                                                                          sys.version_info[:2]))))
+            mypy_cmdline.append(
+                '--python-version={}'.format('.'.join(map(str, sys.version_info[:2])))
+            )
 
         # Write the program to a file.
         program_path = os.path.join(test_temp_dir, 'main.py')
@@ -52,12 +50,17 @@ class GinoDataSuite(DataSuite):
         # split lines, remove newlines, and remove directory of test case
         for line in (out + err).splitlines():
             if line.startswith(test_temp_dir + os.sep):
-                output.append(line[len(test_temp_dir + os.sep):].rstrip("\r\n").replace('.py',
-                                                                                        ''))
+                output.append(
+                    line[len(test_temp_dir + os.sep) :]
+                    .rstrip("\r\n")
+                    .replace('.py', '')
+                )
             else:
                 output.append(line.rstrip("\r\n"))
         # Remove temp file.
         os.remove(program_path)
-        assert_string_arrays_equal(testcase.output, output,
-                                   'Invalid output ({}, line {})'.format(
-                                       testcase.file, testcase.line))
+        assert_string_arrays_equal(
+            testcase.output,
+            output,
+            'Invalid output ({}, line {})'.format(testcase.file, testcase.line),
+        )
