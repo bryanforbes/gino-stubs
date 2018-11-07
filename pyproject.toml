@@ -1,3 +1,38 @@
+[tool.poetry]
+name = "gino-stubs"
+version = "0.1"
+description = "Experimental Gino stubs"
+authors = ["Bryan Forbes <bryan@reigndropsfall.net>"]
+license = "BSD-3-Clause"
+
+packages = [
+	{ include = "gino-stubs" }
+]
+include = ["gino-stubs/**/*.pyi"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+typing-extensions = ">=3.6.5"
+sqlalchemy-stubs = {rev = "8b45fc4345778e3f08e8a3b53ff71aaaa775e632", git = "https://github.com/dropbox/sqlalchemy-stubs.git"}
+
+[tool.poetry.dev-dependencies]
+attrs = ">=18.0"
+black = "^18.3-alpha.0"
+flake8 = "^3.6"
+flake8-bugbear = {version = "^18.8", python = ">=3.5"}
+flake8-per-file-ignores = "^0.6.0"
+flake8-pyi = {version = "^18.1", python = ">=3.6"}
+lxml = "4.2.4"
+mypy = {path ="./external/mypy"}
+mypy_extensions = "0.4.0"
+pre-commit = "^1.12"
+psutil = "5.4.0"
+pytest = "^3.9"
+pytest-cov = "^2.6"
+pytest-xdist = "^1.24"
+py = ">=1.5.2"
+gino = ">=0.8.0"
+
 [tool.black]
 line-length = 88
 py36 = true
@@ -13,3 +48,7 @@ exclude = '''
   | external
 )/
 '''
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
