@@ -21,7 +21,6 @@ test_data_prefix = os.path.join(prefix, 'test', 'test-data')
 
 class GinoDataSuite(DataSuite):
     files = ['gino-basics.test', 'gino-loader.test']
-    data_prefix = test_data_prefix
 
     def run_case(self, testcase: DataDrivenTestCase) -> None:
 
