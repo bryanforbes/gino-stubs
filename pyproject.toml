@@ -13,7 +13,7 @@ include = ["gino-stubs/**/*.pyi"]
 [tool.poetry.dependencies]
 python = "^3.6"
 typing-extensions = ">=3.6.5"
-sqlalchemy-stubs = {rev = "b6647c0931a173f90d817263da5db733f3bf93d5", git = "https://github.com/dropbox/sqlalchemy-stubs.git"}
+sqlalchemy-stubs = {rev = "f34692196984085592ca2eebe219d531393d05cd", git = "https://github.com/dropbox/sqlalchemy-stubs.git"}
 
 [tool.poetry.dev-dependencies]
 attrs = ">=18.0"

@@ -464,7 +464,7 @@ version = "0.1"
 typing-extensions = ">=3.6.5"
 
 [package.source]
-reference = "b6647c0931a173f90d817263da5db733f3bf93d5"
+reference = "f34692196984085592ca2eebe219d531393d05cd"
 type = "git"
 url = "https://github.com/dropbox/sqlalchemy-stubs.git"
 [[package]]
@@ -511,7 +511,7 @@ python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 version = "16.1.0"
 
 [metadata]
-content-hash = "137f7af5be75d4befe6a1c6f9293930e647809061040b37332db270d8290d3f2"
+content-hash = "af9cdb53a91835a10b3bdead44690a2e2c34e3962c77cdacd7dc6149fc3c7794"
 python-versions = "^3.6"
 
 [metadata.hashes]

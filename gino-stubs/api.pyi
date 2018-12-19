@@ -10,6 +10,7 @@ from sqlalchemy.sql.elements import (
 from sqlalchemy.sql.type_api import TypeEngine
 from sqlalchemy.sql.expression import Executable
 from sqlalchemy.engine.base import Engine, Connection
+from sqlalchemy.engine.url import URL
 import asyncio
 from .declarative import declared_attr as gino_declared_attr, Model as GinoModel
 from .schema import GinoSchemaVisitor
@@ -31,6 +32,7 @@ from typing import (
     Generic,
     Generator,
     List,
+    overload,
 )
 
 _T = TypeVar('_T')
@@ -55,13 +57,22 @@ class _BindContext:
     async def __aenter__(self) -> GinoEngine: ...
     async def __aexit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None: ...
 
+class _GinoBind:
+    @overload
+    def __get__(self, instance: None, owner: Any) -> None: ...
+    @overload
+    def __get__(self, instance: Gino, owner: Any) -> Optional[GinoEngine]: ...
+    def __set__(
+        self, instance: Any, value: Optional[Union[GinoEngine, str, URL]]
+    ) -> None: ...
+
 class Gino(sa.MetaData):
     model_base_classes: ClassVar[Tuple[Type[Any], ...]]
     query_executor = GinoEngine
     schema_visitor = GinoSchemaVisitor
     no_delegate: ClassVar[Set[str]]
     declared_attr = gino_declared_attr
-    bind: GinoEngine
+    bind: _GinoBind  # type: ignore
     def __init__(
         self,
         bind: Optional[GinoEngine] = ...,
@@ -74,14 +85,14 @@ class Gino(sa.MetaData):
     @property
     def Model(self) -> Type[GinoModel]: ...
     async def set_bind(
-        self, bind: str, loop: Optional[asyncio.AbstractEventLoop] = ..., **kwargs: Any
+        self,
+        bind: Union[str, URL, GinoEngine],
+        loop: Optional[asyncio.AbstractEventLoop] = ...,
+        **kwargs: Any,
     ) -> GinoEngine: ...
     def pop_bind(self) -> Optional[GinoEngine]: ...
     def with_bind(
-        self,
-        bind: GinoEngine,
-        loop: Optional[asyncio.AbstractEventLoop] = ...,
-        **kwargs: Any,
+        self, bind: str, loop: Optional[asyncio.AbstractEventLoop] = ..., **kwargs: Any
     ) -> _BindContext: ...
     def __await__(self) -> Generator[Any, None, Gino]: ...
     def compile(
