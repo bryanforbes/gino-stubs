@@ -20,9 +20,9 @@ attrs = ">=18.0"
 black = "^18.3-alpha.0"
 flake8 = "^3.6"
 flake8-bugbear = {version = "^18.8", python = "^3.5"}
-flake8-per-file-ignores = "^0.6.0"
+flake8-per-file-ignores = "^0.7.0"
 flake8-pyi = {version = "^18.1", python = "^3.6"}
-lxml = "~4.2.4"
+lxml = "~4.3.0"
 mypy = ">=0.650"
 mypy_extensions = ">=0.4.0"
 pre-commit = "^1.12"

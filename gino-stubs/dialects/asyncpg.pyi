@@ -1,4 +1,5 @@
 from . import base
+from sqlalchemy.dialects.postgresql import ARRAY as ARRAY, JSON as JSON, JSONB as JSONB
 from sqlalchemy.dialects.postgresql.base import (
     ENUM,
     PGCompiler,
