@@ -13,7 +13,7 @@ include = ["gino-stubs/**/*.pyi"]
 [tool.poetry.dependencies]
 python = "^3.6"
 typing-extensions = ">=3.6.5"
-sqlalchemy-stubs = {rev = "d05a736c8a4cbd6ac0a1a1d8ddb805435df9adc9", git = "https://github.com/dropbox/sqlalchemy-stubs.git"}
+sqlalchemy-stubs = {rev = "c0d559246eb9ec24a0bf552253ef4018b5f49a31", git = "https://github.com/dropbox/sqlalchemy-stubs.git"}
 
 [tool.poetry.dev-dependencies]
 attrs = ">=18.0"
@@ -29,6 +29,7 @@ pre-commit = "^1.12"
 psutil = "~5.4.0"
 pytest = "^4.0"
 pytest-cov = "^2.6"
+pytest-mypy-plugins = {git = "https://github.com/mkurnikov/pytest-mypy-plugins.git"}
 pytest-xdist = "^1.24"
 py = ">=1.5.2"
 gino = ">=0.8.0"
