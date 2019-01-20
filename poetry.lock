@@ -46,6 +46,11 @@ optional = false
 python-versions = ">=3.5.0"
 version = "0.18.2"
 
+[package.extras]
+dev = ["Cython (0.29)", "pytest (>=3.6.0)", "Sphinx (>=1.7.0,<1.8.0)", "sphinxcontrib-asyncio (>=0.2.0,<0.3.0)", "sphinx-rtd-theme (>=0.2.0,<0.3.0)", "flake8 (>=3.5.0,<3.6.0)", "uvloop (>=0.8.0)"]
+docs = ["Sphinx (>=1.7.0,<1.8.0)", "sphinxcontrib-asyncio (>=0.2.0,<0.3.0)", "sphinx-rtd-theme (>=0.2.0,<0.3.0)"]
+test = ["flake8 (>=3.5.0,<3.6.0)", "uvloop (>=0.8.0)"]
+
 [[package]]
 category = "main"
 description = "Atomic file writes."
@@ -62,6 +67,11 @@ optional = false
 python-versions = "*"
 version = "18.2.0"
 
+[package.extras]
+dev = ["coverage", "hypothesis", "pympler", "pytest", "six", "zope.interface", "sphinx", "zope.interface", "pre-commit"]
+docs = ["sphinx", "zope.interface"]
+tests = ["coverage", "hypothesis", "pympler", "pytest", "six", "zope.interface"]
+
 [[package]]
 category = "dev"
 description = "The uncompromising code formatter."
@@ -75,6 +85,9 @@ appdirs = "*"
 attrs = ">=17.4.0"
 click = ">=6.5"
 toml = ">=0.9.4"
+
+[package.extras]
+d = ["aiohttp (>=3.3.2)"]
 
 [[package]]
 category = "main"
@@ -244,7 +257,7 @@ description = "File identification library for Python"
 name = "identify"
 optional = false
 python-versions = "*"
-version = "1.1.8"
+version = "1.2.0"
 
 [[package]]
 category = "dev"
@@ -283,6 +296,12 @@ optional = false
 python-versions = "*"
 version = "4.3.0"
 
+[package.extras]
+cssselect = ["cssselect (>=0.7)"]
+html5 = ["html5lib"]
+htmlsoup = ["beautifulsoup4"]
+source = ["Cython (>=0.29.1)"]
+
 [[package]]
 category = "dev"
 description = "McCabe checker, plugin for flake8"
@@ -314,6 +333,9 @@ version = "0.660"
 mypy_extensions = ">=0.4.0,<0.5.0"
 typed-ast = ">=1.2.0,<1.3.0"
 
+[package.extras]
+dmypy = ["psutil (>=5.4.0,<5.5.0)"]
+
 [[package]]
 category = "main"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
@@ -342,6 +364,9 @@ version = "0.2.1"
 six = ">=1.10.0"
 typing = ">=3.5.2"
 
+[package.extras]
+dev = ["pylint (>=1.5.6)"]
+
 [[package]]
 category = "main"
 description = "plugin and hook calling mechanisms for python"
@@ -349,6 +374,9 @@ name = "pluggy"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "0.8.1"
+
+[package.extras]
+dev = ["pre-commit", "tox"]
 
 [[package]]
 category = "dev"
@@ -380,6 +408,9 @@ name = "psutil"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "5.4.8"
+
+[package.extras]
+enum = ["enum34"]
 
 [[package]]
 category = "main"
@@ -431,6 +462,9 @@ pluggy = ">=0.7"
 py = ">=1.5.0"
 setuptools = "*"
 six = ">=1.10.0"
+
+[package.extras]
+testing = ["hypothesis (>=3.56)", "nose", "requests", "mock"]
 
 [[package]]
 category = "dev"
@@ -512,6 +546,17 @@ optional = false
 python-versions = "*"
 version = "1.2.16"
 
+[package.extras]
+mssql_pymssql = ["pymssql"]
+mssql_pyodbc = ["pyodbc"]
+mysql = ["mysqlclient"]
+oracle = ["cx-oracle"]
+postgresql = ["psycopg2"]
+postgresql_pg8000 = ["pg8000"]
+postgresql_psycopg2binary = ["psycopg2-binary"]
+postgresql_psycopg2cffi = ["psycopg2cffi"]
+pymysql = ["pymysql"]
+
 [[package]]
 category = "main"
 description = ""
@@ -573,6 +618,10 @@ version = "16.2.0"
 [package.dependencies]
 setuptools = ">=18.0.0"
 
+[package.extras]
+docs = ["sphinx (>=1.8.0,<2)", "towncrier (>=18.5.0)", "sphinx-rtd-theme (>=0.4.2,<1)"]
+testing = ["pytest (>=4.0.0,<5)", "coverage (>=4.5.0,<5)", "six (>=1.10.0,<2)", "pytest-timeout (>=1.3.0,<2)", "pytest-xdist", "mock", "xonsh"]
+
 [[package]]
 category = "dev"
 description = "Pathlib-compatible object wrapper for zip files"
@@ -580,6 +629,10 @@ name = "zipp"
 optional = false
 python-versions = ">=2.7"
 version = "0.3.3"
+
+[package.extras]
+docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
+testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs", "pytest-flake8", "pathlib2"]
 
 [metadata]
 content-hash = "b4aa9e2b3f0aa6f664befcf072295f5613c6d094364cb6081e3efc9635a809d8"
@@ -609,7 +662,7 @@ flake8-per-file-ignores = ["166951535bfb7f373eecdcbe70af867aafcafdcccec88b28a0e1
 flake8-pyi = ["3e67e2441118a3b889bcec1a6bce5f0594de2abe1f502ec18201c777bd7d9a54", "e7c9f257cc609a1123b2171a47b8bbcc8ee16827a675e4e148686b46ccf02959"]
 gino = ["3471e2f5b44f787eff3381d47e3e252ba184749ba2747adca06658d56272e912", "741cc5b96fbf8d7f62a8ce37efc14204ab67a17efa78c38b34f74fcc8155b4b2"]
 humanfriendly = ["1d3a1c157602801c62dfdb321760229df2e0d4f14412a0f41b13ad3f930a936a", "42d0aa829f59c710db20ec42eed24a8b7a27688d477da61b5aebd604d0bb2402"]
-identify = ["08826e68e39e7de53cc2ddd8f6228a4e463b4bacb20565e5301c3ec690e68d27", "2364e24a7699fea0dc910e90740adbab43eef3746eeea4e016029c34123ce66d"]
+identify = ["0b2bb67c857b8048d979caeef4d20a3dfdb0337f154d16a8f9e31cd6e04ae554", "113622f73da90a723e9baf764553f807051ad80c3a9e8a7edd15aa4309861f4d"]
 immutables = ["1e4f4513254ef11e0230a558ee0dcb4551b914993c330005d15338da595d3750", "228e38dc7a810ba4ff88909908ac47f840e5dc6c4c0da6b25009c626a9ae771c", "2ae88fbfe1d04f4e5859c924e97313edf70e72b4f19871bf329b96a67ede9ba0", "2d32b61c222cba1dd11f0faff67c7fb6204ef1982454e1b5b001d4b79966ef17", "35af186bfac5b62522fdf2cab11120d7b0547f405aa399b6a1e443cf5f5e318c", "63023fa0cceedc62e0d1535cd4ca7a1f6df3120a6d8e5c34e89037402a6fd809", "6bf5857f42a96331fd0929c357dc0b36a72f339f3b6acaf870b149c96b141f69", "7bb1590024a032c7a57f79faf8c8ff5e91340662550d2980e0177f67e66e9c9c", "7c090687d7e623d4eca22962635b5e1a1ee2d6f9a9aca2f3fb5a184a1ffef1f2", "bc36a0a8749881eebd753f696b081bd51145e4d77291d671d2e2f622e5b65d2f", "d9fc6a236018d99af6453ead945a6bb55f98d14b1801a2c229dd993edc753a00"]
 importlib-metadata = ["a17ce1a8c7bff1e8674cb12c992375d8d0800c9190177ecf0ad93e0097224095", "b50191ead8c70adfa12495fba19ce6d75f2e0275c14c5a7beb653d6799b512bd"]
 importlib-resources = ["6e2783b2538bd5a14678284a3962b0660c715e5a0f10243fd5e00a4b5974f50b", "d3279fd0f6f847cced9f7acc19bd3e5df54d34f93a2e7bb5f238f81545787078"]

@@ -15,12 +15,15 @@ class Model(Base):
     __tablename__ = 'model'
 
     id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(), nullable=False)
     created_at = db.Column(db.DateTime())
 
 async def main() -> None:
     model = await Model.create()
     reveal_type(model)  # E: Revealed type is 'main.Model*'
     reveal_type(model.id)  # E: Revealed type is 'builtins.int*'
+    reveal_type(model.name)  # E: Revealed type is 'builtins.str*'
+    reveal_type(model.created_at)  # E: Revealed type is 'Union[datetime.datetime*, None]'
 
     model = Model()
     model.created_at = datetime.now()
