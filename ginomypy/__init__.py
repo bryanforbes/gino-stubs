@@ -1,5 +1,5 @@
 from typing import TYPE_CHECKING, Optional, Callable
-from mypy.plugin import Plugin, MethodContext
+from mypy.plugin import Plugin, FunctionContext, MethodContext
 from mypy.types import Type
 from sqlmypy import column_hook
 
@@ -10,6 +10,13 @@ COLUMN_NAME = 'sqlalchemy.sql.schema.Column'  # type: Final
 
 
 class BasicGinoPlugin(Plugin):
+    def get_function_hook(
+        self, fullname: str
+    ) -> Optional[Callable[[FunctionContext], Type]]:
+        if fullname == COLUMN_NAME:
+            return column_hook
+        return None
+
     def get_method_hook(
         self, fullname: str
     ) -> Optional[Callable[[MethodContext], Type]]:

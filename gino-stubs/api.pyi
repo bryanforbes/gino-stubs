@@ -36,16 +36,16 @@ from typing import (
 )
 
 _T = TypeVar('_T')
-_CM = TypeVar('_CM', bound=GinoExecutor)
+_GE = TypeVar('_GE', bound=GinoExecutor)
 
 class GinoExecutor(Generic[_T]):
     def __init__(self, query: Executable) -> None: ...
     @property
     def query(self) -> Executable: ...
-    def model(self: _CM, model: Any) -> _CM: ...
-    def return_model(self: _CM, switch: bool) -> _CM: ...
-    def timeout(self: _CM, timeout: Optional[int]) -> _CM: ...
-    def load(self: _CM, value: Any) -> _CM: ...
+    def model(self: _GE, model: Any) -> _GE: ...
+    def return_model(self: _GE, switch: bool) -> _GE: ...
+    def timeout(self: _GE, timeout: Optional[int]) -> _GE: ...
+    def load(self: _GE, value: Any) -> _GE: ...
     async def all(self, *multiparams: Any, **params: Any) -> List[_T]: ...
     async def first(self, *multiparams: Any, **params: Any) -> Optional[_T]: ...
     async def scalar(self, *multiparams: Any, **params: Any) -> Any: ...
@@ -81,7 +81,126 @@ class Gino(sa.MetaData):
         schema_ext: bool = ...,
         ext: bool = ...,
         **kwargs: Any,
-    ) -> None: ...
+    ) -> None:
+        # from json_support
+        self.JSONProperty = json_support.JSONProperty
+        self.StringProperty = json_support.StringProperty
+        self.DateTimeProperty = json_support.DateTimeProperty
+        self.IntegerProperty = json_support.IntegerProperty
+        self.BooleanProperty = json_support.BooleanProperty
+        self.ObjectProperty = json_support.ObjectProperty
+        self.ArrayProperty = json_support.ArrayProperty
+
+        # from sqlalchemy
+        self.ARRAY = sa.ARRAY
+        self.BIGINT = sa.BIGINT
+        self.BINARY = sa.BINARY
+        self.BLANK_SCHEMA: Any
+        self.BLOB = sa.BLOB
+        self.BOOLEAN = sa.BOOLEAN
+        self.BigInteger = sa.BigInteger
+        self.Binary = sa.Binary
+        self.Boolean = sa.Boolean
+        self.CHAR = sa.CHAR
+        self.CLOB = sa.CLOB
+        self.CheckConstraint = sa.CheckConstraint
+        self.Column = sa.Column
+        self.ColumnDefault = sa.ColumnDefault
+        self.Constraint = sa.Constraint
+        self.DATE = sa.DATE
+        self.DATETIME = sa.DATETIME
+        self.DDL = sa.DDL
+        self.DECIMAL = sa.DECIMAL
+        self.Date = sa.Date
+        self.DateTime = sa.DateTime
+        self.DefaultClause = sa.DefaultClause
+        self.Enum = sa.Enum
+        self.FLOAT = sa.FLOAT
+        self.FetchedValue = sa.FetchedValue
+        self.Float = sa.Float
+        self.ForeignKey = sa.ForeignKey
+        self.ForeignKeyConstraint = sa.ForeignKeyConstraint
+        self.INT = sa.INT
+        self.INTEGER = sa.INTEGER
+        self.Index = sa.Index
+        self.Integer = sa.Integer
+        self.Interval = sa.Interval
+        self.JSON = sa.JSON
+        self.LargeBinary = sa.LargeBinary
+        self.MetaData = sa.MetaData
+        self.NCHAR = sa.NCHAR
+        self.NUMERIC = sa.NUMERIC
+        self.NVARCHAR = sa.NVARCHAR
+        self.Numeric = sa.Numeric
+        self.PassiveDefault = sa.PassiveDefault
+        self.PickleType = sa.PickleType
+        self.PrimaryKeyConstraint = sa.PrimaryKeyConstraint
+        self.REAL = sa.REAL
+        self.SMALLINT = sa.SMALLINT
+        self.Sequence = sa.Sequence
+        self.SmallInteger = sa.SmallInteger
+        self.String = sa.String
+        self.TEXT = sa.TEXT
+        self.TIME = sa.TIME
+        self.TIMESTAMP = sa.TIMESTAMP
+        self.Table = sa.Table
+        self.Text = sa.Text
+        self.ThreadLocalMetaData = sa.ThreadLocalMetaData
+        self.Time = sa.Time
+        self.TypeDecorator = sa.TypeDecorator
+        self.Unicode = sa.Unicode
+        self.UnicodeText = sa.UnicodeText
+        self.UniqueConstraint = sa.UniqueConstraint
+        self.VARBINARY = sa.VARBINARY
+        self.VARCHAR = sa.VARCHAR
+        self.text = sa.text
+        self.alias = sa.alias
+        self.all_ = sa.all_
+        self.and_ = sa.and_
+        self.asc = sa.asc
+        self.between = sa.between
+        self.bindparam = sa.bindparam
+        self.case = sa.case
+        self.cast = sa.cast
+        self.collate = sa.collate
+        self.column = sa.column
+        self.delete = sa.delete
+        self.desc = sa.desc
+        self.distinct = sa.distinct
+        self.except_ = sa.except_
+        self.except_all = sa.except_all
+        self.exists = sa.exists
+        self.extract = sa.extract
+        self.false = sa.false
+        self.func = sa.func
+        self.funcfilter = sa.funcfilter
+        self.insert = sa.insert
+        self.inspect = sa.inspect
+        self.intersect = sa.intersect
+        self.intersect_all = sa.intersect_all
+        self.join = sa.join
+        self.lateral = sa.lateral
+        self.literal = sa.literal
+        self.literal_column = sa.literal_column
+        self.modifier = sa.modifier
+        self.not_ = sa.not_
+        self.null = sa.null
+        # self.nullsfirst = sa.nullsfirst
+        # self.nullslast = sa.nullslast
+        self.or_ = sa.or_
+        self.outerjoin = sa.outerjoin
+        self.outparam = sa.outparam
+        self.select = sa.select
+        self.subquery = sa.subquery
+        self.table = sa.table
+        self.tablesample = sa.tablesample
+        self.true = sa.true
+        self.tuple_ = sa.tuple_
+        self.type_coerce = sa.type_coerce
+        self.union = sa.union
+        self.union_all = sa.union_all
+        self.update = sa.update
+        self.within_group = sa.within_group
     @property
     def Model(self) -> Type[GinoModel]: ...
     async def set_bind(
@@ -115,138 +234,3 @@ class Gino(sa.MetaData):
     ) -> _IterableCursor[Any]: ...
     def acquire(self, *args: Any, **kwargs: Any) -> _AcquireContext: ...
     def transaction(self, *args: Any, **kwargs: Any) -> GinoTransaction: ...
-    # from json_support
-    JSONProperty = json_support.JSONProperty
-    StringProperty = json_support.StringProperty
-    DateTimeProperty = json_support.DateTimeProperty
-    IntegerProperty = json_support.IntegerProperty
-    BooleanProperty = json_support.BooleanProperty
-    ObjectProperty = json_support.ObjectProperty
-    ArrayProperty = json_support.ArrayProperty
-
-    # from sqlalchemy
-    ARRAY = sa.ARRAY
-    BIGINT = sa.BIGINT
-    BINARY = sa.BINARY
-    BLANK_SCHEMA: Any
-    BLOB = sa.BLOB
-    BOOLEAN = sa.BOOLEAN
-    BigInteger = sa.BigInteger
-    Binary = sa.Binary
-    Boolean = sa.Boolean
-    CHAR = sa.CHAR
-    CLOB = sa.CLOB
-    CheckConstraint = sa.CheckConstraint
-    Column = sa.Column
-    ColumnDefault = sa.ColumnDefault
-    Constraint = sa.Constraint
-    DATE = sa.DATE
-    DATETIME = sa.DATETIME
-    DDL = sa.DDL
-    DECIMAL = sa.DECIMAL
-    Date = sa.Date
-    DateTime = sa.DateTime
-    DefaultClause = sa.DefaultClause
-    Enum = sa.Enum
-    FLOAT = sa.FLOAT
-    FetchedValue = sa.FetchedValue
-    Float = sa.Float
-    ForeignKey = sa.ForeignKey
-    ForeignKeyConstraint = sa.ForeignKeyConstraint
-    INT = sa.INT
-    INTEGER = sa.INTEGER
-    Index = sa.Index
-    Integer = sa.Integer
-    Interval = sa.Interval
-    JSON = sa.JSON
-    LargeBinary = sa.LargeBinary
-    MetaData = sa.MetaData
-    NCHAR = sa.NCHAR
-    NUMERIC = sa.NUMERIC
-    NVARCHAR = sa.NVARCHAR
-    Numeric = sa.Numeric
-    PassiveDefault = sa.PassiveDefault
-    PickleType = sa.PickleType
-    PrimaryKeyConstraint = sa.PrimaryKeyConstraint
-    REAL = sa.REAL
-    SMALLINT = sa.SMALLINT
-    Sequence = sa.Sequence
-    SmallInteger = sa.SmallInteger
-    String = sa.String
-    TEXT = sa.TEXT
-    TIME = sa.TIME
-    TIMESTAMP = sa.TIMESTAMP
-    Table = sa.Table
-    Text = sa.Text
-    ThreadLocalMetaData = sa.ThreadLocalMetaData
-    Time = sa.Time
-    TypeDecorator = sa.TypeDecorator
-    Unicode = sa.Unicode
-    UnicodeText = sa.UnicodeText
-    UniqueConstraint = sa.UniqueConstraint
-    VARBINARY = sa.VARBINARY
-    VARCHAR = sa.VARCHAR
-
-    alias = sa.alias
-    all_ = sa.all_
-    @classmethod
-    def and_(cls, *clauses: ClauseElement) -> BooleanClauseList: ...
-    @classmethod
-    def asc(cls, column: ColumnElement[Any]) -> UnaryExpression[None]: ...
-    between = sa.between
-    bindparam = sa.bindparam
-    case = sa.case
-    cast = sa.cast
-    collate = sa.collate
-    column = sa.column
-    delete = sa.delete
-    @classmethod
-    def desc(cls, column: ColumnElement[Any]) -> UnaryExpression[None]: ...
-    @classmethod
-    def distinct(cls, column: ColumnElement[_T]) -> UnaryExpression[_T]: ...
-    except_ = sa.except_
-    except_all = sa.except_all
-    exists = sa.exists
-    extract = sa.extract
-    false = sa.false
-    func = sa.func
-    funcfilter = sa.funcfilter
-    insert = sa.insert
-    inspect = sa.inspect
-    intersect = sa.intersect
-    intersect_all = sa.intersect_all
-    join = sa.join
-    lateral = sa.lateral
-    literal = sa.literal
-    literal_column = sa.literal_column
-    modifier = sa.modifier
-    not_ = sa.not_
-    null = sa.null
-    # nullsfirst = sa.nullsfirst
-    # nullslast = sa.nullslast
-    @classmethod
-    def or_(cls, *clauses: ClauseElement) -> BooleanClauseList: ...
-    outerjoin = sa.outerjoin
-    outparam = sa.outparam
-    select = sa.select
-    subquery = sa.subquery
-    table = sa.table
-    tablesample = sa.tablesample
-    @classmethod
-    def text(
-        cls,
-        text: str,
-        bind: Optional[Union[Engine, Connection]] = ...,
-        bindparams: Optional[Iterable[BindParameter[Any]]] = ...,
-        typemap: Optional[
-            Mapping[str, Union[TypeEngine[Any], Type[TypeEngine[Any]]]]
-        ] = ...,
-        autocommit: Optional[bool] = ...,
-    ) -> TextClause: ...
-    true = sa.true
-    tuple_ = sa.tuple_
-    type_coerce = sa.type_coerce
-    union = sa.union
-    union_all = sa.union_all
-    update = sa.update
-    within_group = sa.within_group
