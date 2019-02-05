@@ -13,14 +13,13 @@ include = ["gino-stubs/**/*.pyi"]
 [tool.poetry.dependencies]
 python = "^3.6"
 typing-extensions = ">=3.6.5"
-sqlalchemy-stubs = {rev = "c0d559246eb9ec24a0bf552253ef4018b5f49a31", git = "https://github.com/dropbox/sqlalchemy-stubs.git"}
+sqlalchemy-stubs = {rev = "c155b67180e14eb68331fb7deb108bc1cb79bf88", git = "https://github.com/dropbox/sqlalchemy-stubs.git"}
 
 [tool.poetry.dev-dependencies]
 attrs = ">=18.0"
 black = "^18.3-alpha.0"
 flake8 = "^3.6"
 flake8-bugbear = {version = "^18.8", python = "^3.5"}
-flake8-per-file-ignores = "^0.7.0"
 flake8-pyi = {version = "^18.1", python = "^3.6"}
 lxml = "~4.3.0"
 mypy = ">=0.650"
