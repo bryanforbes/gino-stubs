@@ -57,10 +57,9 @@ async def main() -> None:
 [out]
 
 [case testDeclarativeBaseNoModelClasses]
-from typing import TYPE_CHECKING, Any
+from typing import Any
 from gino import Gino
 from gino.declarative import declarative_base
-from gino.crud import CRUDModel
 from datetime import datetime
 
 db = Gino()
@@ -80,4 +79,78 @@ async def main() -> None:
     model = Model()
     model.gino  # E: "Model" has no attribute "gino"
     model.created_at = datetime.now()
+[out]
+
+[case testDeclarativeInstantiation]
+from typing import Any
+from gino import Gino
+from gino.declarative import declarative_base
+from gino.crud import CRUDModel
+from datetime import datetime
+
+db = Gino()
+Base = declarative_base(db, (CRUDModel,))
+
+class Model(Base):
+    __tablename__ = 'model'
+
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(), nullable=False)
+    created_at = db.Column(db.DateTime())
+
+model1 = Model(id=0, name='John Doe', created_at=datetime.now())
+model2 = Model(id=1, name=None, created_at=datetime.now())  # E: Incompatible type for argument "name" (got "None", expected "str")
+model3 = Model(id=None, name='John Doe', created_at=None)  # E: Incompatible type for argument "id" (got "None", expected "int")
+model4 = Model(id='2', name='John Doe')  # E: Incompatible type for argument "id" (got "str", expected "int")
+model5 = Model(id=3, first_name='John')  # E: Unexpected argument "first_name"
+[out]
+
+[case testDeclarativeCreate]
+from typing import Any
+from gino import Gino
+from gino.declarative import declarative_base
+from gino.crud import CRUDModel
+from datetime import datetime
+
+db = Gino()
+Base = declarative_base(db, (CRUDModel,))
+
+class Model(Base):
+    __tablename__ = 'model'
+
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(), nullable=False)
+    created_at = db.Column(db.DateTime())
+
+async def main() -> None:
+    model1 = await Model.create(id=0, name='John Doe', created_at=datetime.now())
+    model2 = await Model.create(id=1, name=None, created_at=datetime.now())  # E: Incompatible type for argument "name" (got "None", expected "str")
+    model3 = await Model.create(id=None, name='John Doe', created_at=None)  # E: Incompatible type for argument "id" (got "None", expected "int")
+    model4 = await Model.create(id='2', name='John Doe')  # E: Incompatible type for argument "id" (got "str", expected "int")
+    model5 = await Model.create(id=3, first_name='John')  # E: Unexpected argument "first_name"
+[out]
+
+[case testDeclarativeUpdate]
+from typing import Any
+from gino import Gino
+from gino.declarative import declarative_base
+from gino.crud import CRUDModel
+from datetime import datetime
+
+db = Gino()
+Base = declarative_base(db, (CRUDModel,))
+
+class Model(Base):
+    __tablename__ = 'model'
+
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(), nullable=False)
+    created_at = db.Column(db.DateTime())
+
+model = Model(name='John Doe', created_at=datetime.now())
+model.update(name=None)  # E: Incompatible type for argument "name" (got "None", expected "str")
+model.update(id=None, created_at=None)  # E: Incompatible type for argument "id" (got "None", expected "int")
+model.update(id='2', name='John Doe')  # E: Incompatible type for argument "id" (got "str", expected "int")
+model.update(id=3, first_name='John')  # E: Unexpected argument "first_name"
+model.update(id=3).update(first_name='John')  # E: Unexpected argument "first_name"
 [out]
