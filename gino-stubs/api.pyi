@@ -79,7 +79,11 @@ class Gino(_sa.MetaData):
         query_ext: bool = ...,
         schema_ext: bool = ...,
         ext: bool = ...,
-        **kwargs: Any,
+        reflect: bool = ...,
+        schema: Optional[str] = ...,
+        quote_schema: Optional[bool] = ...,
+        naming_convention: Mapping[Any, Any] = ...,
+        info: Optional[Mapping[str, Any]] = ...,
     ) -> None:
         self.declared_attr = _gino_declared_attr
 

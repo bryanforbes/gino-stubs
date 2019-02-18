@@ -14,13 +14,13 @@ from typing import (
     Generic,
     overload,
 )
-from typing_extensions import Protocol
+from typing_extensions import Protocol, Final
 from sqlalchemy.sql.dml import Update as _SAUpdate, Delete as _SADelete
 from sqlalchemy.sql.selectable import Select as _SASelect, Alias as _SAAlias
 from sqlalchemy.sql.elements import BooleanClauseList
 from sqlalchemy.sql.schema import Column as _SAColumn
 
-DEFAULT: Any
+DEFAULT: Final[Any]
 
 _T_co = TypeVar('_T_co', covariant=True)
 _CM = TypeVar('_CM', bound=CRUDModel)
