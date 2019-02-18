@@ -9,6 +9,7 @@ from .utils import (
     get_model_from_ctx,
     check_model_values,
     set_declarative,
+    lookup_type_info,
 )
 
 
@@ -21,9 +22,7 @@ def declarative_base_hook(ctx: DynamicClassDefContext) -> None:
     elif len(ctx.call.args) > 1:
         model_classes_arg = ctx.call.args[1]
     else:
-        gino_model = ctx.api.lookup_fully_qualified('gino.declarative.Model')
-        assert isinstance(gino_model.node, TypeInfo)
-        model_classes_arg = gino_model.node
+        model_classes_arg = lookup_type_info(ctx.api, 'gino.declarative.Model')
 
     if model_classes_arg is not None:
         if isinstance(model_classes_arg, TupleExpr):
@@ -43,10 +42,8 @@ def declarative_base_hook(ctx: DynamicClassDefContext) -> None:
             if isinstance(base, Instance):
                 cls_bases.append(base)
 
-    model_type = ctx.api.lookup_fully_qualified('gino.declarative.ModelType')
-    assert isinstance(model_type.node, TypeInfo)
-
-    info = create_dynamic_class(ctx, cls_bases, metaclass=model_type.node)
+    model_type_info = lookup_type_info(ctx.api, 'gino.declarative.ModelType')
+    info = create_dynamic_class(ctx, cls_bases, metaclass=model_type_info)
 
     set_declarative(info)
 

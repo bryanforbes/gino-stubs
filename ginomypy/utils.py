@@ -1,4 +1,5 @@
-from typing import Optional, Union, List, Dict
+from typing import Optional, Union, List, Dict, cast
+from typing_extensions import Protocol
 from mypy.mro import calculate_mro, MroError
 from mypy.nodes import (
     TypeInfo,
@@ -17,6 +18,16 @@ from mypy.plugin import DynamicClassDefContext, FunctionContext, MethodContext
 from mypy.types import Instance, Type
 
 from .names import COLUMN_NAME
+
+
+class FullyQualifiedObject(Protocol):
+    def lookup_fully_qualified(self, __name: str) -> Optional[SymbolTableNode]:
+        ...
+
+
+class FullyQualifiedOrNoneObject(Protocol):
+    def lookup_fully_qualified_or_none(self, __name: str) -> Optional[SymbolTableNode]:
+        ...
 
 
 def is_declarative(info: TypeInfo) -> bool:
@@ -39,6 +50,22 @@ def set_patched(info: TypeInfo) -> None:
 
 def is_patched(info: TypeInfo, key: str) -> bool:
     return info.metadata.get('gino', {}).get('patched', False)
+
+
+def lookup_type_info(
+    obj: Union[FullyQualifiedObject, FullyQualifiedOrNoneObject], fullname: str
+) -> Optional[TypeInfo]:
+    if hasattr(obj, 'lookup_fully_qualified_or_none'):
+        sym: Optional[SymbolTableNode] = cast(
+            FullyQualifiedOrNoneObject, obj
+        ).lookup_fully_qualified_or_none(fullname)
+    else:
+        sym = cast(FullyQualifiedObject, obj).lookup_fully_qualified(fullname)
+
+    if sym and isinstance(sym.node, TypeInfo):
+        return sym.node
+
+    return None
 
 
 def create_dynamic_class(
