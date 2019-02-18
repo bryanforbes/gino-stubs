@@ -2,6 +2,7 @@ __pycache__
 .venv/
 .mypy_cache/
 .pytest_cache/
+dist/
 *.egg
 *.egg-info
 *.eggs

@@ -6,9 +6,13 @@ authors = ["Bryan Forbes <bryan@reigndropsfall.net>"]
 license = "BSD-3-Clause"
 
 packages = [
-	{ include = "gino-stubs" }
+	{ include = "gino-stubs" },
+	{ include = "ginomypy" }
 ]
-include = ["gino-stubs/**/*.pyi"]
+include = [
+	"gino-stubs/**/*.pyi",
+	"ginomypy/py.typed"
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"
