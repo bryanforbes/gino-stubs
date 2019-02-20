@@ -1,0 +1,23 @@
+language: python
+python:
+  - "3.7"
+
+dist: xenial
+sudo: required
+
+cache:
+  pip: true
+  directories:
+    - "$HOME/.cache/pypoetry"
+
+before_install:
+  - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python - -y --preview
+  - source $HOME/.poetry/env
+
+install:
+  - poetry install -v
+
+script: |
+  set -e
+  poetry run flake8 gino-stubs ginomypy
+  poetry run py.test
