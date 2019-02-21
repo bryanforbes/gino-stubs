@@ -9,9 +9,6 @@ from mypy.nodes import (
     SymbolTableNode,
     GDEF,
     Expression,
-    CallExpr,
-    MemberExpr,
-    NameExpr,
     Var,
 )
 from mypy.plugin import DynamicClassDefContext, FunctionContext, MethodContext
@@ -111,22 +108,13 @@ def get_model_from_ctx(ctx: Union[FunctionContext, MethodContext]) -> TypeInfo:
         model = ctx.default_return_type.args[2].type
 
     if not model.has_base('gino.crud.CRUDModel'):
-        if isinstance(ctx.context, CallExpr) and isinstance(
-            ctx.context.callee, MemberExpr
+        args = ctx.default_return_type.args
+        if (
+            len(args) > 0
+            and isinstance(args[0], Instance)
+            and args[0].type.has_base('gino.crud.CRUDModel')
         ):
-            callee: MemberExpr = ctx.context.callee
-            while isinstance(callee.expr, CallExpr) and isinstance(
-                callee.expr.callee, MemberExpr
-            ):
-                callee = callee.expr.callee
-
-            if (
-                isinstance(callee.expr, NameExpr)
-                and callee.expr.node is not None
-                and isinstance(callee.expr.node, Var)
-                and isinstance(callee.expr.node.type, Instance)
-            ):
-                model = callee.expr.node.type.type
+            model = args[0].type
 
     return model
 
