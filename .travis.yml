@@ -20,4 +20,5 @@ install:
 script: |
   set -e
   poetry run flake8 gino-stubs ginomypy
+  poetry run mypy -m ginomypy
   poetry run py.test
