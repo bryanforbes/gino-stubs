@@ -91,7 +91,7 @@ def create_dynamic_class(
     try:
         calculate_mro(info)
     except MroError:
-        ctx.api.fail('Not able to calculate MRO for declarative base', ctx.call)
+        ctx.api.fail('Not able to calculate MRO for dynamic class', ctx.call)
         info.bases = [obj]
         info.fallback_to_any = True
 
