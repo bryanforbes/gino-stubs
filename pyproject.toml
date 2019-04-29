@@ -18,18 +18,18 @@ include = [
 python = "^3.6"
 typing-extensions = ">=3.6.5"
 sqlalchemy-stubs = "^0.1"
+sqlalchemy = "~1.2.18"
 
 [tool.poetry.dev-dependencies]
 attrs = ">=18.0"
-black = "^18.3-alpha.0"
+black = "^19.3b0"
 flake8 = "^3.6"
-flake8-bugbear = {version = "^18.8", python = "^3.5"}
+flake8-bugbear = {version = "^19.3", python = "^3.6"}
 flake8-pyi = {version = "^19.2", python = "^3.6"}
 lxml = "~4.3.0"
-mypy = ">=0.670"
+mypy = ">=0.701"
 mypy_extensions = ">=0.4.0"
 pre-commit = "^1.12"
-psutil = "~5.4.0"
 pytest = "^4.0"
 pytest-cov = "^2.6"
 pytest-mypy-plugins = "^0.3.0"
@@ -39,7 +39,7 @@ gino = ">=0.8.0"
 
 [tool.black]
 line-length = 88
-py36 = true
+target-version = ["py36", "py37"]
 skip-string-normalization = true
 include = '\.pyi?$'
 exclude = '''
