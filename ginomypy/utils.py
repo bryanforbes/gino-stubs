@@ -10,9 +10,12 @@ from mypy.nodes import (
     GDEF,
     Expression,
     Var,
+    TupleExpr,
+    RefExpr,
 )
 from mypy.plugin import DynamicClassDefContext, FunctionContext, MethodContext
-from mypy.types import Instance, Type
+from mypy.types import Instance, Type, TupleType
+from mypy.typevars import fill_typevars_with_any
 
 from .names import COLUMN_NAME
 
@@ -70,7 +73,8 @@ def create_dynamic_class(
     bases: List[Instance],
     *,
     name: Optional[str] = None,
-    metaclass: Optional[TypeInfo] = None,
+    metaclass: Optional[str] = None,
+    symbol_table: Optional[SymbolTable] = None,
 ) -> TypeInfo:
     if name is None:
         name = ctx.name
@@ -81,7 +85,9 @@ def create_dynamic_class(
     info = TypeInfo(SymbolTable(), class_def, ctx.api.cur_mod_id)
 
     if metaclass is not None:
-        info.declared_metaclass = Instance(metaclass, [])
+        metaclass_type_info = lookup_type_info(ctx.api, metaclass)
+        if metaclass_type_info is not None:
+            info.declared_metaclass = Instance(metaclass_type_info, [])
 
     class_def.info = info
 
@@ -95,7 +101,11 @@ def create_dynamic_class(
         info.bases = [obj]
         info.fallback_to_any = True
 
-    ctx.api.add_symbol_table_node(name, SymbolTableNode(GDEF, info))
+    if symbol_table is None:
+        ctx.api.add_symbol_table_node(name, SymbolTableNode(GDEF, info))
+    else:
+        symbol_table[name] = SymbolTableNode(GDEF, info)
+
     return info
 
 
@@ -140,6 +150,38 @@ def get_expected_model_types(model: TypeInfo) -> Dict[str, Type]:
     expected_type_cache[model_name] = expected_types
 
     return expected_types
+
+
+def get_base_classes_from_arg(
+    ctx: DynamicClassDefContext, arg_name: str, default_value: str
+) -> List[Instance]:
+    base_classes: List[Instance] = []
+
+    arg: Optional[Union[TypeInfo, Expression]] = None
+    if arg_name in ctx.call.arg_names:
+        arg = ctx.call.args[ctx.call.arg_names.index(arg_name)]
+    elif len(ctx.call.args) > 1:
+        arg = ctx.call.args[1]
+    else:
+        arg = lookup_type_info(ctx.api, default_value)
+
+    if arg is not None:
+        if isinstance(arg, TupleExpr):
+            items: List[Union[Expression, TypeInfo]] = [item for item in arg.items]
+        else:
+            items = [arg]
+
+        for item in items:
+            base: Optional[Union[Instance, TupleType]] = None
+            if isinstance(item, RefExpr) and isinstance(item.node, TypeInfo):
+                base = fill_typevars_with_any(item.node)
+            elif isinstance(item, TypeInfo):
+                base = fill_typevars_with_any(item)
+
+            if isinstance(base, Instance):
+                base_classes.append(base)
+
+    return base_classes
 
 
 def check_model_values(

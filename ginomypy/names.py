@@ -1,16 +1,13 @@
-from typing import TYPE_CHECKING
+from typing_extensions import Final
 
-if TYPE_CHECKING:
-    from typing_extensions import Final  # noqa
-
-COLUMN_NAME = 'sqlalchemy.sql.schema.Column'  # type: Final
-GINO_NAME = 'gino.api.Gino'  # type: Final
-DECLARATIVE_BASE_NAME = 'gino.declarative.declarative_base'  # type: Final
-CRUD_CLASS_CREATE_NAME = 'gino.crud._CreateWithoutInstance.__call__'  # type: Final
-CRUD_UPDATE_NAME = 'gino.crud._UpdateWithInstance.__call__'  # type: Final
-CRUD_UPDATE_REQUEST_NAME = 'gino.crud.UpdateRequest.update'  # type: Final
-VALUES_NAMES = {
+COLUMN_NAME: Final = 'sqlalchemy.sql.schema.Column'
+GINO_NAME: Final = 'gino.api.Gino'
+DECLARATIVE_BASE_NAME: Final = 'gino.declarative.declarative_base'
+CRUD_CLASS_CREATE_NAME: Final = 'gino.crud._CreateWithoutInstance.__call__'
+CRUD_UPDATE_NAME: Final = 'gino.crud._UpdateWithInstance.__call__'
+CRUD_UPDATE_REQUEST_NAME: Final = 'gino.crud.UpdateRequest.update'
+VALUES_NAMES: Final = {
     CRUD_CLASS_CREATE_NAME,
     CRUD_UPDATE_NAME,
     CRUD_UPDATE_REQUEST_NAME,
-}  # type: Final
+}
