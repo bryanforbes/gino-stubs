@@ -36,7 +36,7 @@ def model_dynamic_class_hook(ctx: DynamicClassDefContext) -> None:
     set_declarative(info)
 
 
-def model_hook(ctx: Union[FunctionContext, MethodContext]) -> Type:
+def model_init_hook(ctx: Union[FunctionContext, MethodContext]) -> Type:
     model = get_model_from_ctx(ctx)
 
     if '__init__' in model.names or not model.has_base('gino.crud.CRUDModel'):
