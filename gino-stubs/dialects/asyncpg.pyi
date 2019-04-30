@@ -8,8 +8,8 @@ from sqlalchemy.dialects.postgresql.base import (
 )
 from sqlalchemy.sql import sqltypes
 from typing import Any, Optional, Generator
-import asyncpg
-import asyncpg.pool
+import asyncpg  # type: ignore
+import asyncpg.pool  # type: ignore
 
 JSON_COLTYPE: int
 JSONB_COLTYPE: int

@@ -154,3 +154,28 @@ model.update(id='2', name='John Doe')  # E: Incompatible type for argument "id" 
 model.update(id=3, first_name='John')  # E: Unexpected argument "first_name"
 model.update(id=3).update(first_name='John')  # E: Unexpected argument "first_name"
 [out]
+
+[case testDeclarativeJsonProperty]
+from typing import Any
+from gino import Gino
+from gino.declarative import declarative_base
+from gino.crud import CRUDModel
+from sqlalchemy.dialects.postgresql import JSONB
+
+db = Gino()
+Base = declarative_base(db, (CRUDModel,))
+
+class Model(Base):
+    __tablename__ = 'model'
+
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(), nullable=False)
+    profile = db.Column(JSONB(), server_default='{}')
+    max_age = db.IntegerProperty(default=0)
+
+model = Model(name='John Doe', max_age=2)
+model.update(max_age=None)
+model.update(max_age=4)
+model.update(name='foo')
+model.update(max_age='asdf')  # E: Incompatible type for argument "max_age" (got "str", expected "Optional[int]")
+[out]

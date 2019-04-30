@@ -11,3 +11,17 @@ VALUES_NAMES: Final = {
     CRUD_UPDATE_NAME,
     CRUD_UPDATE_REQUEST_NAME,
 }
+JSON_STRING: Final = 'gino.json_support.StringProperty'
+JSON_DATETIME: Final = 'gino.json_support.DateTimeProperty'
+JSON_INTEGER: Final = 'gino.json_support.IntegerProperty'
+JSON_BOOLEAN: Final = 'gino.json_support.BooleanProperty'
+JSON_OBJECT: Final = 'gino.json_support.ObjectProperty'
+JSON_ARRAY: Final = 'gino.json_support.ArrayProperty'
+JSON_NAMES: Final = {
+    JSON_STRING,
+    JSON_DATETIME,
+    JSON_INTEGER,
+    JSON_BOOLEAN,
+    JSON_OBJECT,
+    JSON_ARRAY,
+}

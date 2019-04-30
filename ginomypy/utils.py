@@ -14,10 +14,10 @@ from mypy.nodes import (
     RefExpr,
 )
 from mypy.plugin import DynamicClassDefContext, FunctionContext, MethodContext
-from mypy.types import Instance, Type, TupleType
+from mypy.types import Instance, Type, TupleType, UnionType, NoneTyp
 from mypy.typevars import fill_typevars_with_any
 
-from .names import COLUMN_NAME
+from .names import COLUMN_NAME, JSON_NAMES
 
 
 class FullyQualifiedObject(Protocol):
@@ -129,25 +129,18 @@ def get_model_from_ctx(ctx: Union[FunctionContext, MethodContext]) -> TypeInfo:
     return model
 
 
-expected_type_cache: Dict[str, Dict[str, Type]] = {}
-
-
 def get_expected_model_types(model: TypeInfo) -> Dict[str, Type]:
-    model_name = model.fullname()
-
-    if model_name in expected_type_cache:
-        return expected_type_cache[model_name]
-
     expected_types: Dict[str, Type] = {}
 
     for name, sym in model.names.items():
         if isinstance(sym.node, Var) and isinstance(sym.node.type, Instance):
             tp = sym.node.type
-            if tp.type.fullname() == COLUMN_NAME:
+            fullname = tp.type.fullname()
+            if fullname == COLUMN_NAME:
                 assert len(tp.args) == 1
                 expected_types[name] = tp.args[0]
-
-    expected_type_cache[model_name] = expected_types
+            elif fullname in JSON_NAMES:
+                expected_types[name] = UnionType([tp.type.bases[0].args[0], NoneTyp()])
 
     return expected_types
 
