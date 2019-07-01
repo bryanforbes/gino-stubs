@@ -17,7 +17,7 @@ CBT = Optional[Callable[[T], U]]
 class GinoPlugin(Plugin):
     def get_function_hook(self, fullname: str) -> CBT[FunctionContext, Type]:
         if fullname == COLUMN_NAME:
-            return column_hook
+            return column_hook  # type: ignore
 
         info = lookup_type_info(self, fullname)
         if info is not None:
@@ -29,7 +29,7 @@ class GinoPlugin(Plugin):
 
     def get_method_hook(self, fullname: str) -> CBT[MethodContext, Type]:
         if fullname == COLUMN_NAME:
-            return column_hook
+            return column_hook  # type: ignore
         if fullname in VALUES_NAMES:
             return crud_model_values_hook
 

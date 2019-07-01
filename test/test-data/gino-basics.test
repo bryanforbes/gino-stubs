@@ -20,10 +20,10 @@ class Model(Base):
 
 async def main() -> None:
     model = await Model.create()
-    reveal_type(model)  # E: Revealed type is 'main.Model*'
-    reveal_type(model.id)  # E: Revealed type is 'builtins.int*'
-    reveal_type(model.name)  # E: Revealed type is 'builtins.str*'
-    reveal_type(model.created_at)  # E: Revealed type is 'Union[datetime.datetime*, None]'
+    reveal_type(model)  # N: Revealed type is 'main.Model*'
+    reveal_type(model.id)  # N: Revealed type is 'builtins.int*'
+    reveal_type(model.name)  # N: Revealed type is 'builtins.str*'
+    reveal_type(model.created_at)  # N: Revealed type is 'Union[datetime.datetime*, None]'
 
     model = Model()
     model.created_at = datetime.now()
@@ -53,16 +53,16 @@ class Model(Base):
 
 async def main() -> None:
     one = await Model.get(1)
-    reveal_type(one)  # E: Revealed type is 'Union[main.Model*, None]'
+    reveal_type(one)  # N: Revealed type is 'Union[main.Model*, None]'
 
     all = await Model.query.where(db.func.to_tsvector('english', Model.title + db.text("' '") + Model.text)
                                   .match('foo')).gino.all()
-    reveal_type(all)  # E: Revealed type is 'builtins.list*[main.Model*]'
+    reveal_type(all)  # N: Revealed type is 'builtins.list*[main.Model*]'
 
     first = await Model.query.gino.first()
-    reveal_type(first)  # E: Revealed type is 'Union[main.Model*, None]'
+    reveal_type(first)  # N: Revealed type is 'Union[main.Model*, None]'
 
     async with db.transaction():
         async for model in Model.query.gino.iterate():
-            reveal_type(model)  # E: Revealed type is 'main.Model*'
+            reveal_type(model)  # N: Revealed type is 'main.Model*'
 [out]

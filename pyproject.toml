@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gino-stubs"
-version = "0.1"
+version = "0.2"
 description = "Experimental Gino stubs"
 authors = ["Bryan Forbes <bryan@reigndropsfall.net>"]
 license = "BSD-3-Clause"
@@ -17,7 +17,7 @@ include = [
 [tool.poetry.dependencies]
 python = "^3.6"
 typing-extensions = ">=3.6.5"
-sqlalchemy-stubs = "^0.1"
+sqlalchemy-stubs = "^0.2"
 sqlalchemy = "~1.2.18"
 
 [tool.poetry.dev-dependencies]
@@ -28,9 +28,8 @@ flake8-bugbear = {version = "^19.3", python = "^3.6"}
 flake8-pyi = {version = "^19.2", python = "^3.6"}
 lxml = "~4.3.0"
 mypy = ">=0.701"
-mypy_extensions = ">=0.4.0"
 pre-commit = "^1.12"
-pytest = "^4.0"
+pytest = "^5.0"
 pytest-cov = "^2.6"
 pytest-mypy-plugins = "^0.3.0"
 pytest-xdist = "^1.24"
