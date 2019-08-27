@@ -11,6 +11,10 @@ indent_size = 4
 indent_style = space
 max_line_length = 88
 
+[*.yml]
+indent_style = space
+indent_size = 2
+
 [*.md]
 indent_style = space
 indent_size = 2
