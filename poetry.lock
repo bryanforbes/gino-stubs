@@ -558,6 +558,10 @@ version = "0.2"
 mypy = ">=0.660"
 typing-extensions = ">=3.6.5"
 
+[package.source]
+reference = "46008db95fd2205ee04661640263434dc394d63f"
+type = "git"
+url = "https://github.com/dropbox/sqlalchemy-stubs.git"
 [[package]]
 category = "dev"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -629,7 +633,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "8d46a17d45a05feed64b14909d40f828ca833c93f6e692e353ee36e89374a49f"
+content-hash = "ed61adcbc8078fada4ab821a2fd6ce8315a2cc98a836599c9bd7966162a96f44"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -899,10 +903,7 @@ six = [
 sqlalchemy = [
     {file = "SQLAlchemy-1.2.19.tar.gz", hash = "sha256:5bb2c4fc2bcc3447ad45716c66581eab982c007dcf925482498d8733f86f17c7"},
 ]
-sqlalchemy-stubs = [
-    {file = "sqlalchemy-stubs-0.2.tar.gz", hash = "sha256:fe9df983274142f82973e4f7634a98dcbdbdde964918ad3dcf33d94398c51537"},
-    {file = "sqlalchemy_stubs-0.2-py3-none-any.whl", hash = "sha256:4bb4a0377ed6c01bea2e1124d60747714d56742352bdb80e2093ca80a1bc036f"},
-]
+sqlalchemy-stubs = []
 toml = [
     {file = "toml-0.10.0-py2.7.egg", hash = "sha256:f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"},
     {file = "toml-0.10.0-py2.py3-none-any.whl", hash = "sha256:235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e"},

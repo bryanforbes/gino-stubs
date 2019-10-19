@@ -17,7 +17,7 @@ include = [
 [tool.poetry.dependencies]
 python = "^3.6"
 typing-extensions = ">=3.6.5"
-sqlalchemy-stubs = "^0.2"
+"sqlalchemy-stubs" = {rev = "46008db95fd2205ee04661640263434dc394d63f", git = "https://github.com/dropbox/sqlalchemy-stubs.git"}
 sqlalchemy = "~1.2.18"
 
 [tool.poetry.dev-dependencies]
