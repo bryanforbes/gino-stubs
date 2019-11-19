@@ -229,7 +229,7 @@ description = "GINO Is Not ORM - a Python asyncio ORM on SQLAlchemy core."
 name = "gino"
 optional = false
 python-versions = ">=3.5"
-version = "0.8.3"
+version = "0.8.4"
 
 [package.dependencies]
 SQLAlchemy = ">=1.2,<2.0"
@@ -432,7 +432,7 @@ description = "Python parsing module"
 name = "pyparsing"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
-version = "2.4.4"
+version = "2.4.5"
 
 [[package]]
 category = "dev"
@@ -646,7 +646,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "ed61adcbc8078fada4ab821a2fd6ce8315a2cc98a836599c9bd7966162a96f44"
+content-hash = "9ce9b7dc841a18d8f239d608e142d99c01dbd57cc349943b425e0c263bfc6ee7"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -774,8 +774,7 @@ flake8-pyi = [
     {file = "flake8_pyi-19.3.0-py2.py3-none-any.whl", hash = "sha256:a93a47ac78b6d363545885e9254d0eccac8a88c3806ab8af27e30dd8c058654f"},
 ]
 gino = [
-    {file = "gino-0.8.3-py3-none-any.whl", hash = "sha256:3aebbe8776efefa49b878f00b48d6ad483b0f4ebcd8630641ea7c3c9f63bb260"},
-    {file = "gino-0.8.3.tar.gz", hash = "sha256:187492619c347df41fdbc876b058b85e77f7c50739d552ad720ff439d3d83753"},
+    {file = "gino-0.8.4.tar.gz", hash = "sha256:1044797ce127304c3a5c5bc9a059cc0903313757d84c157f8229999cce2010f4"},
 ]
 humanfriendly = [
     {file = "humanfriendly-4.18-py2.py3-none-any.whl", hash = "sha256:23057b10ad6f782e7bc3a20e3cb6768ab919f619bbdc0dd75691121bbde5591d"},
@@ -870,8 +869,8 @@ pyflakes = [
     {file = "pyflakes-2.1.1.tar.gz", hash = "sha256:d976835886f8c5b31d47970ed689944a0262b5f3afa00a5a7b4dc81e5449f8a2"},
 ]
 pyparsing = [
-    {file = "pyparsing-2.4.4-py2.py3-none-any.whl", hash = "sha256:61b5ed888beab19ddccab3478910e2076a6b5a0295dffc43021890e136edf764"},
-    {file = "pyparsing-2.4.4.tar.gz", hash = "sha256:4acadc9a2b96c19fe00932a38ca63e601180c39a189a696abce1eaab641447e1"},
+    {file = "pyparsing-2.4.5-py2.py3-none-any.whl", hash = "sha256:20f995ecd72f2a1f4bf6b072b63b22e2eb457836601e76d6e5dfcd75436acc1f"},
+    {file = "pyparsing-2.4.5.tar.gz", hash = "sha256:4ca62001be367f01bd3e92ecbb79070272a9d4964dce6a48a82ff0b8bc7e683a"},
 ]
 pyreadline = [
     {file = "pyreadline-2.1.win-amd64.exe", hash = "sha256:9ce5fa65b8992dfa373bddc5b6e0864ead8f291c94fbfec05fbd5c836162e67b"},
