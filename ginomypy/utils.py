@@ -1,5 +1,5 @@
-from typing import Optional, Union, List, Dict, cast
-from typing_extensions import Protocol
+from typing import Optional, Union, List, Dict
+from typing_extensions import Protocol, runtime_checkable
 from mypy.mro import calculate_mro, MroError
 from mypy.nodes import (
     TypeInfo,
@@ -20,11 +20,13 @@ from mypy.typevars import fill_typevars_with_any
 from .names import COLUMN_NAME, JSON_NAMES
 
 
+@runtime_checkable
 class FullyQualifiedObject(Protocol):
     def lookup_fully_qualified(self, __name: str) -> Optional[SymbolTableNode]:
         ...
 
 
+@runtime_checkable
 class FullyQualifiedOrNoneObject(Protocol):
     def lookup_fully_qualified_or_none(self, __name: str) -> Optional[SymbolTableNode]:
         ...
@@ -55,12 +57,10 @@ def is_patched(info: TypeInfo, key: str) -> bool:
 def lookup_type_info(
     obj: Union[FullyQualifiedObject, FullyQualifiedOrNoneObject], fullname: str
 ) -> Optional[TypeInfo]:
-    if hasattr(obj, 'lookup_fully_qualified_or_none'):
-        sym: Optional[SymbolTableNode] = cast(
-            FullyQualifiedOrNoneObject, obj
-        ).lookup_fully_qualified_or_none(fullname)
+    if isinstance(obj, FullyQualifiedOrNoneObject):
+        sym = obj.lookup_fully_qualified_or_none(fullname)
     else:
-        sym = cast(FullyQualifiedObject, obj).lookup_fully_qualified(fullname)
+        sym = obj.lookup_fully_qualified(fullname)
 
     if sym and isinstance(sym.node, TypeInfo):
         return sym.node
