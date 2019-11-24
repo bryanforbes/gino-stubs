@@ -20,14 +20,15 @@ jobs:
     - name: Install Poetry
       uses: dschep/install-poetry-action@v1.2
       with:
-        version: 1.0.0b3
+        version: 1.0.0b7
     - name: Install dependencies
       run: |
         poetry install -v
     - name: Lint with flake8 and mypy
       run: |
         poetry run flake8 gino-stubs ginomypy
-        poetry run mypy ginomypy
+        ln -s gino-stubs gino
+        poetry run mypy gino ginomypy
     - name: Test with pytest
       run: |
         poetry run py.test
