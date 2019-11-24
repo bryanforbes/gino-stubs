@@ -10,9 +10,14 @@ from typing import (
     Generic,
     TypeVar,
     Iterator,
+    Mapping,
+    Sequence,
     overload,
 )
 from sqlalchemy import Column, Table
+from sqlalchemy.sql.dml import Insert
+from sqlalchemy.sql.selectable import Join, FromClause
+from sqlalchemy.sql.elements import ClauseElement
 from collections import OrderedDict
 from .schema import GinoSchemaVisitor
 from .api import Gino
@@ -58,16 +63,32 @@ class ModelType(type):
         namespace: Any,
         **kwargs: Any,
     ) -> _MT: ...
-    def insert(cls, values=None, inline=False, **kwargs) -> Any: ...
-    def join(cls, right, onclause=None, isouter=False, full=False) -> Any: ...
-    def outerjoin(cls, right, onclause=None, full=False) -> Any: ...
+    def insert(
+        cls,
+        values: Union[Mapping[Any, Any], Sequence[Any]] = ...,
+        inline: bool = ...,
+        **kwargs: Any,
+    ) -> Insert: ...
+    def join(
+        cls,
+        right: FromClause,
+        onclause: Optional[ClauseElement] = ...,
+        isouter: bool = ...,
+        full: bool = ...,
+    ) -> Join: ...
+    def outerjoin(
+        cls,
+        right: FromClause,
+        onclause: Optional[ClauseElement] = ...,
+        full: bool = ...,
+    ) -> Join: ...
 
 def declared_attr(m: _F) -> _F: ...
 
 class Model:
     __metadata__: Gino = ...
     __table__: Table = ...
-    __attr_factory__: Type[ColumnAttribute] = ...
+    __attr_factory__: Type[ColumnAttribute[Any]] = ...
     __values__: TypingDict[str, Any] = ...
 
     _column_name_map: InvertDict[str, str]

@@ -16,7 +16,7 @@ import datetime
 _T = TypeVar('_T')
 _U = TypeVar('_U')
 _M = TypeVar('_M', bound=Mapping[str, Any])
-_JP = TypeVar('_JP', bound=JSONProperty)
+_JP = TypeVar('_JP', bound=JSONProperty[Any])
 
 class Hook(Generic[_T]):
     parent: JSONProperty[_T] = ...

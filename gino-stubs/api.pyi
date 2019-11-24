@@ -36,7 +36,7 @@ from typing import (
 )
 
 _T = TypeVar('_T')
-_GE = TypeVar('_GE', bound=GinoExecutor)
+_GE = TypeVar('_GE', bound=GinoExecutor[Any])
 
 class GinoExecutor(Generic[_T]):
     def __init__(self, query: Executable) -> None: ...
