@@ -6,7 +6,7 @@ from sqlmypy import column_hook  # type: ignore
 
 from .hooks import model_init_hook, crud_model_values_hook, declarative_base_hook
 from .names import COLUMN_NAME, DECLARATIVE_BASE_NAME, VALUES_NAMES
-from .utils import is_declarative, lookup_type_info
+from .utils import is_declarative, lookup_type_info, get_fullname
 
 T = TypeVar('T')
 U = TypeVar('U')
@@ -48,7 +48,7 @@ class GinoPlugin(Plugin):
         return None
 
     def get_additional_deps(self, file: MypyFile) -> List[Tuple[int, str, int]]:
-        if file.fullname() == 'gino.api':
+        if get_fullname(file) == 'gino.api':
             return [(10, 'gino.crud', -1)]
 
         return []

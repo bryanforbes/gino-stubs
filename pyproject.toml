@@ -16,9 +16,9 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-typing-extensions = ">=3.6.5"
+mypy = ">=0.720"
+typing-extensions = ">=3.7.4"
 sqlalchemy-stubs = "^0.3"
-sqlalchemy = "~1.2.18"
 
 [tool.poetry.dev-dependencies]
 attrs = ">=18.0"
@@ -26,7 +26,6 @@ black = "^19.3b0"
 flake8 = "^3.6"
 flake8-bugbear = {version = "^19.3", python = "^3.6"}
 flake8-pyi = {version = "^19.2", python = "^3.6"}
-mypy = ">=0.701"
 pre-commit = "^1.12"
 pytest = "^5.0"
 pytest-cov = "^2.6"
@@ -34,6 +33,7 @@ pytest-mypy-plugins = "~1.1.0"
 pytest-xdist = "^1.24"
 py = ">=1.5.2"
 gino = ">=0.8.4"
+sqlalchemy = "~1.2.18"
 
 [tool.black]
 line-length = 88

@@ -1,4 +1,4 @@
-from typing import Optional, Union, List, Dict
+from typing import Optional, Union, List, Dict, Callable
 from typing_extensions import Protocol, runtime_checkable
 from mypy.mro import calculate_mro, MroError
 from mypy.nodes import (
@@ -12,12 +12,40 @@ from mypy.nodes import (
     Var,
     TupleExpr,
     RefExpr,
+    FuncBase,
+    SymbolNode,
 )
 from mypy.plugin import DynamicClassDefContext, FunctionContext, MethodContext
 from mypy.types import Instance, Type, TupleType, UnionType, NoneTyp
 from mypy.typevars import fill_typevars_with_any
 
 from .names import COLUMN_NAME, JSON_NAMES
+
+
+try:
+    from mypy.types import get_proper_type as _get_proper_type
+
+    get_proper_type = _get_proper_type
+except ImportError:
+    get_proper_type = lambda x: x  # noqa: E731
+
+# See https://github.com/python/mypy/issues/6617 for plugin API updates.
+
+
+def get_fullname(x: Union[FuncBase, SymbolNode]) -> str:
+    """Compatibility helper for mypy 0.750 vs older."""
+    fn: Union[str, Callable[..., str]] = x.fullname
+    if callable(fn):
+        return fn()
+    return fn
+
+
+def get_shortname(x: Union[FuncBase, SymbolNode]) -> str:
+    """Compatibility helper for mypy 0.750 vs older."""
+    fn: Union[str, Callable[..., str]] = x.name
+    if callable(fn):
+        return fn()
+    return fn
 
 
 @runtime_checkable
@@ -113,7 +141,7 @@ def get_model_from_ctx(ctx: Union[FunctionContext, MethodContext]) -> TypeInfo:
     assert isinstance(ctx.default_return_type, Instance)
     model = ctx.default_return_type.type
 
-    if model.fullname() == 'typing.Coroutine':
+    if get_fullname(model) == 'typing.Coroutine':
         assert isinstance(ctx.default_return_type.args[2], Instance)
         model = ctx.default_return_type.args[2].type
 
@@ -133,14 +161,17 @@ def get_expected_model_types(model: TypeInfo) -> Dict[str, Type]:
     expected_types: Dict[str, Type] = {}
 
     for name, sym in model.names.items():
-        if isinstance(sym.node, Var) and isinstance(sym.node.type, Instance):
-            tp = sym.node.type
-            fullname = tp.type.fullname()
-            if fullname == COLUMN_NAME:
-                assert len(tp.args) == 1
-                expected_types[name] = tp.args[0]
-            elif fullname in JSON_NAMES:
-                expected_types[name] = UnionType([tp.type.bases[0].args[0], NoneTyp()])
+        if isinstance(sym.node, Var):
+            tp = get_proper_type(sym.node.type)
+            if isinstance(tp, Instance):
+                fullname = get_fullname(tp.type)
+                if fullname == COLUMN_NAME:
+                    assert len(tp.args) == 1
+                    expected_types[name] = tp.args[0]
+                elif fullname in JSON_NAMES:
+                    expected_types[name] = UnionType(
+                        [tp.type.bases[0].args[0], NoneTyp()]
+                    )
 
     return expected_types
 
@@ -192,7 +223,7 @@ def check_model_values(
         if actual_name not in expected_types:
             ctx.api.fail(
                 f'Unexpected argument "{actual_name}"'.format(
-                    actual_name, model.name()
+                    actual_name, get_shortname(model)
                 ),
                 ctx.context,
             )
