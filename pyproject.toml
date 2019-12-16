@@ -29,7 +29,7 @@ flake8-pyi = {version = "^19.2", python = "^3.6"}
 pre-commit = "^1.12"
 pytest = "^5.0"
 pytest-cov = "^2.6"
-pytest-mypy-plugins = "~1.1.0"
+pytest-mypy-plugins = "~1.2.0"
 pytest-xdist = "^1.24"
 py = ">=1.5.2"
 gino = ">=0.8.4"
