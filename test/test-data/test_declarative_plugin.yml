@@ -17,7 +17,9 @@
         created_at = db.Column(db.DateTime())
 
     async def main() -> None:
+        reveal_type(Model.__table__)  # N: Revealed type is 'sqlalchemy.sql.schema.Table'
         model = await Model.create()
+        reveal_type(model.__table__)  # N: Revealed type is 'sqlalchemy.sql.schema.Table'
         reveal_type(model)  # N: Revealed type is 'main.Model*'
         reveal_type(model.id)  # N: Revealed type is 'builtins.int*'
         reveal_type(model.name)  # N: Revealed type is 'builtins.str*'

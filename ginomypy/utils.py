@@ -8,6 +8,7 @@ from mypy.nodes import (
     SymbolTable,
     SymbolTableNode,
     GDEF,
+    MDEF,
     Expression,
     Var,
     TupleExpr,
@@ -94,6 +95,23 @@ def lookup_type_info(
         return sym.node
 
     return None
+
+
+def add_var_to_class(info: TypeInfo, name: str, typ: Type) -> None:
+    var = Var(name)
+    var.info = info
+    var._fullname = get_fullname(info) + '.' + name
+    var.type = typ
+    info.names[name] = SymbolTableNode(MDEF, var)
+
+
+def add_metadata(ctx: DynamicClassDefContext, info: TypeInfo) -> None:
+    assert len(ctx.call.args) >= 1
+    metadata = ctx.call.args[0]
+
+    assert isinstance(metadata, RefExpr) and isinstance(metadata.node, Var)
+    typ = Instance(metadata.node.info, [])
+    add_var_to_class(info, '__metadata__', typ)
 
 
 def create_dynamic_class(
