@@ -1,23 +1,24 @@
-from typing import Optional, Callable, TypeVar, List, Tuple
+from typing import Callable, List, Optional, Tuple, TypeVar
+
+from mypy.nodes import MypyFile, TypeInfo
 from mypy.plugin import (
-    Plugin,
+    ClassDefContext,
+    DynamicClassDefContext,
     FunctionContext,
     MethodContext,
-    DynamicClassDefContext,
-    ClassDefContext,
+    Plugin,
 )
 from mypy.types import Type
-from mypy.nodes import MypyFile, TypeInfo
 from sqlmypy import column_hook, grouping_hook  # type: ignore
 
 from .hooks import (
-    model_init_hook,
     crud_model_values_hook,
     declarative_base_hook,
     model_base_class_hook,
+    model_init_hook,
 )
-from .names import COLUMN_NAME, GROUPING_NAME, DECLARATIVE_BASE_NAME, VALUES_NAMES
-from .utils import is_declarative, get_fullname
+from .names import COLUMN_NAME, DECLARATIVE_BASE_NAME, GROUPING_NAME, VALUES_NAMES
+from .utils import get_fullname, is_declarative
 
 T = TypeVar('T')
 U = TypeVar('U')

@@ -1,17 +1,16 @@
+import datetime
 from typing import (
     Any,
-    Optional,
-    Union,
     Callable,
     Dict,
-    List,
     Generic,
-    TypeVar,
     List,
     Mapping,
+    Optional,
+    TypeVar,
+    Union,
     overload,
 )
-import datetime
 
 _T = TypeVar('_T')
 _U = TypeVar('_U')

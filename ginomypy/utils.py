@@ -1,27 +1,27 @@
-from typing import Optional, Union, List, Dict, Callable
+from typing import Callable, Dict, List, Optional, Union
 from typing_extensions import Protocol, runtime_checkable
-from mypy.mro import calculate_mro, MroError
+
+from mypy.mro import MroError, calculate_mro
 from mypy.nodes import (
-    TypeInfo,
-    ClassDef,
-    Block,
-    SymbolTable,
-    SymbolTableNode,
     GDEF,
     MDEF,
+    Block,
+    ClassDef,
     Expression,
-    Var,
-    TupleExpr,
-    RefExpr,
     FuncBase,
+    RefExpr,
     SymbolNode,
+    SymbolTable,
+    SymbolTableNode,
+    TupleExpr,
+    TypeInfo,
+    Var,
 )
 from mypy.plugin import DynamicClassDefContext, FunctionContext, MethodContext
-from mypy.types import Instance, Type, TupleType, UnionType, NoneTyp
+from mypy.types import Instance, NoneTyp, TupleType, Type, UnionType
 from mypy.typevars import fill_typevars_with_any
 
 from .names import COLUMN_NAME, JSON_NAMES
-
 
 try:
     from mypy.types import get_proper_type as _get_proper_type

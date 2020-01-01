@@ -1,8 +1,10 @@
-from .declarative import Model
-from .api import GinoExecutor
-from typing import Any, TypeVar, Generic, List, Iterable, Iterator
+from typing import Any, Generic, Iterable, Iterator, List, TypeVar
+
 from sqlalchemy import Column
 from sqlalchemy.sql.selectable import Select as _SASelect
+
+from .api import GinoExecutor
+from .declarative import Model
 
 _T = TypeVar('_T')
 

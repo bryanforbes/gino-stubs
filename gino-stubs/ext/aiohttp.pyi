@@ -1,7 +1,10 @@
-from ..api import Gino as _Gino, GinoExecutor as _Executor
-from ..engine import GinoConnection as _Connection, GinoEngine as _Engine
+from typing import Any, ClassVar, Optional, Tuple, Type, TypeVar
+
+from ..api import Gino as _Gino
+from ..api import GinoExecutor as _Executor
+from ..engine import GinoConnection as _Connection
+from ..engine import GinoEngine as _Engine
 from ..strategies import GinoStrategy
-from typing import Any, Optional, TypeVar, ClassVar, Tuple, Type
 
 _T = TypeVar('_T')
 

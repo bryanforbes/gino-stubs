@@ -1,5 +1,10 @@
-from . import base
-from sqlalchemy.dialects.postgresql import ARRAY as ARRAY, JSON as JSON, JSONB as JSONB
+from typing import Any, Generator, List, Optional, TypeVar
+
+import asyncpg  # type: ignore
+import asyncpg.pool  # type: ignore
+from sqlalchemy.dialects.postgresql import ARRAY as ARRAY
+from sqlalchemy.dialects.postgresql import JSON as JSON
+from sqlalchemy.dialects.postgresql import JSONB as JSONB
 from sqlalchemy.dialects.postgresql.base import (
     ENUM,
     PGCompiler,
@@ -7,9 +12,8 @@ from sqlalchemy.dialects.postgresql.base import (
     PGExecutionContext,
 )
 from sqlalchemy.sql import sqltypes
-from typing import Any, Optional, Generator, TypeVar, List
-import asyncpg  # type: ignore
-import asyncpg.pool  # type: ignore
+
+from . import base
 
 _T = TypeVar('_T')
 

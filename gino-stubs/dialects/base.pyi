@@ -1,16 +1,7 @@
+from typing import Any, AsyncIterator, Generator, Generic, List, Optional, Type, TypeVar
+
 from ..engine import _DBAPIConnection, _SAConnection, _SAEngine
 from ..loader import Loader
-from typing import (
-    Any,
-    Optional,
-    Type,
-    Generic,
-    TypeVar,
-    AsyncIterator,
-    Generator,
-    Generic,
-    List,
-)
 
 DEFAULT: Any
 

@@ -1,5 +1,6 @@
+from typing import Any, Coroutine, Optional
+
 from sqlalchemy.sql.ddl import SchemaDropper, SchemaGenerator
-from typing import Any, Optional, Coroutine
 
 class AsyncVisitor:
     async def traverse_single(self, obj: Any, **kw: Any) -> Any: ...

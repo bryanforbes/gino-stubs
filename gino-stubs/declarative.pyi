@@ -1,26 +1,26 @@
+from collections import OrderedDict
+from typing import Any, Callable
+from typing import Dict as TypingDict
 from typing import (
-    Any,
-    Optional,
-    Union,
-    TypeVar,
-    Callable,
-    Dict as TypingDict,
-    Tuple,
-    Type,
     Generic,
-    TypeVar,
     Iterator,
     Mapping,
+    Optional,
     Sequence,
+    Tuple,
+    Type,
+    TypeVar,
+    Union,
     overload,
 )
+
 from sqlalchemy import Column, Table
 from sqlalchemy.sql.dml import Insert
-from sqlalchemy.sql.selectable import Join, FromClause
 from sqlalchemy.sql.elements import ClauseElement
-from collections import OrderedDict
-from .schema import GinoSchemaVisitor
+from sqlalchemy.sql.selectable import FromClause, Join
+
 from .api import Gino
+from .schema import GinoSchemaVisitor
 
 _FuncType = Callable[..., Any]
 _F = TypeVar('_F', bound=_FuncType)

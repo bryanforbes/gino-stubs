@@ -1,6 +1,8 @@
-from typing import Any, Optional, Iterable, Mapping, Generator
-from .engine import GinoConnection
+from typing import Any, Generator, Iterable, Mapping, Optional
+
 from asyncpg.transaction import Transaction  # type: ignore
+
+from .engine import GinoConnection
 
 class _Break(BaseException):
     tx: GinoTransaction = ...

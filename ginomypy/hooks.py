@@ -1,20 +1,21 @@
 from typing import Union
+
+from mypy.nodes import TypeInfo
 from mypy.plugin import (
+    ClassDefContext,
+    DynamicClassDefContext,
     FunctionContext,
     MethodContext,
-    DynamicClassDefContext,
-    ClassDefContext,
 )
-from mypy.types import Type, Instance, AnyType, TypeOfAny
-from mypy.nodes import TypeInfo
+from mypy.types import AnyType, Instance, Type, TypeOfAny
 
 from .utils import (
-    create_dynamic_class,
-    get_model_from_ctx,
-    check_model_values,
-    set_declarative,
-    get_base_classes_from_arg,
     add_var_to_class,
+    check_model_values,
+    create_dynamic_class,
+    get_base_classes_from_arg,
+    get_model_from_ctx,
+    set_declarative,
 )
 
 

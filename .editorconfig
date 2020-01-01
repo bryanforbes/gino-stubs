@@ -7,7 +7,11 @@ insert_final_newline = true
 indent_style = tab
 indent_size = 4
 
-[*.{py,pyi,test}]
+[*.py]
+indent_style = space
+max_line_length = 88
+
+[*.pyi]
 indent_style = space
 max_line_length = 88
 

@@ -1,24 +1,28 @@
-from .api import GinoExecutor
-from .declarative import Model, InvertDict
-from .exceptions import NoSuchRowError
-from .loader import AliasLoader, ModelLoader
-from .engine import GinoEngine
 from typing import (
     Any,
-    Optional,
-    Dict,
-    Iterator,
     ClassVar,
-    TypeVar,
-    Type,
+    Dict,
     Generic,
+    Iterator,
+    Optional,
+    Type,
+    TypeVar,
     overload,
 )
-from typing_extensions import Protocol, Final
-from sqlalchemy.sql.dml import Update as _SAUpdate, Delete as _SADelete
-from sqlalchemy.sql.selectable import Select as _SASelect, Alias as _SAAlias
+from typing_extensions import Final, Protocol
+
+from sqlalchemy.sql.dml import Delete as _SADelete
+from sqlalchemy.sql.dml import Update as _SAUpdate
 from sqlalchemy.sql.elements import BooleanClauseList
 from sqlalchemy.sql.schema import Column as _SAColumn
+from sqlalchemy.sql.selectable import Alias as _SAAlias
+from sqlalchemy.sql.selectable import Select as _SASelect
+
+from .api import GinoExecutor
+from .declarative import InvertDict, Model
+from .engine import GinoEngine
+from .exceptions import NoSuchRowError
+from .loader import AliasLoader, ModelLoader
 
 DEFAULT: Final[Any]
 
