@@ -9,7 +9,7 @@ from mypy.plugin import (
     Plugin,
 )
 from mypy.types import Type
-from sqlmypy import column_hook, grouping_hook  # type: ignore
+from sqlmypy import column_hook, grouping_hook
 
 from .hooks import (
     crud_model_values_hook,

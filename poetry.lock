@@ -250,7 +250,7 @@ python-versions = "*"
 version = "0.11"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Read metadata from Python packages"
 marker = "python_version < \"3.8\""
 name = "importlib-metadata"
@@ -297,7 +297,7 @@ python-versions = "*"
 version = "0.6.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "More routines for operating on iterables, beyond itertools"
 name = "more-itertools"
 optional = false
@@ -612,7 +612,7 @@ python-versions = "*"
 version = "0.1.7"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Backport of pathlib-compatible object wrapper for zip files"
 marker = "python_version < \"3.8\""
 name = "zipp"
@@ -628,7 +628,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "7be0537e5c45cb6e73e014e0dd83ae48888c66087e429df5623eebb3eb299a28"
+content-hash = "655f6cefba8c2a2625c6b0278f1c52d76efaf8efb869ae05d0b256b27bb2d0a2"
 python-versions = "^3.6"
 
 [metadata.files]
