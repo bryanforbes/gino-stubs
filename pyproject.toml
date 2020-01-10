@@ -6,7 +6,6 @@ authors = ["Bryan Forbes <bryan@reigndropsfall.net>"]
 license = "BSD-3-Clause"
 
 packages = [
-	{ include = "gino-stubs" },
 	{ include = "ginomypy" }
 ]
 include = [
