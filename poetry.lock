@@ -40,7 +40,7 @@ mypy = "^0.770"
 typing-extensions = "^3.7.4"
 
 [package.source]
-reference = "c3b283f21dd4c4871e69c448f705fe728bdf5ca6"
+reference = "5c9837e771fe49d144a322de3091de702f9a4ef8"
 type = "git"
 url = "https://github.com/bryanforbes/asyncpg-stubs.git"
 [[package]]
@@ -663,7 +663,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "d1287f3377522ad37ffe04de594bec5b4e5b7768cce01567e56702021b78f478"
+content-hash = "75b4a13639154c649d2619ca034fec29c6fb7496d5201b55b2fe4c72f1e0819c"
 python-versions = "^3.6.1"
 
 [metadata.files]
