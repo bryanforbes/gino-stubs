@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gino-stubs"
-version = "1.0.0+0"
+version = "1.0.1+0"
 description = "Gino stubs and mypy plugin"
 authors = ["Bryan Forbes <bryan@reigndropsfall.net>"]
 license = "BSD-3-Clause"
