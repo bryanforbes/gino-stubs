@@ -221,10 +221,10 @@ description = "GINO Is Not ORM - a Python asyncio ORM on SQLAlchemy core."
 name = "gino"
 optional = false
 python-versions = ">=3.5,<4.0"
-version = "1.0.0"
+version = "1.0.1"
 
 [package.dependencies]
-SQLAlchemy = ">=1.2,<2.0"
+SQLAlchemy = ">=1.2.16,<1.4"
 asyncpg = ">=0.18,<1.0"
 
 [package.dependencies.contextvars]
@@ -663,7 +663,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "02c22e4d2b6880caf2f33f1c8b5e8f53faecde72cb0fd881185e30388933da6b"
+content-hash = "66c886899660952741954da24bbed95589f4243567657704e3bcb15e4ecf0602"
 python-versions = "^3.6.1"
 
 [metadata.files]
@@ -787,8 +787,8 @@ flake8-pyi = [
     {file = "flake8_pyi-20.5.0-py36-none-any.whl", hash = "sha256:f22cbadb5e51bd273906d5f94fafa94caefc80d7605a9cafe8f20f95496a7cfe"},
 ]
 gino = [
-    {file = "gino-1.0.0-py3-none-any.whl", hash = "sha256:5750575d25b458ac8c484f324310042485ecd8039ae67fc82bc34e06182c2737"},
-    {file = "gino-1.0.0.tar.gz", hash = "sha256:0924f16e02f33f046ad3aa9bc02a7ac7cd72f89261f4447ab54fd789eb3b65fc"},
+    {file = "gino-1.0.1-py3-none-any.whl", hash = "sha256:56df57cfdefbaf897a7c4897c265a0e91a8cca80716fb64f7d3cf6d501fdfb3d"},
+    {file = "gino-1.0.1.tar.gz", hash = "sha256:fe4189e82fe9d20c4a5f03fc775fb91c168061c5176b4c95623caeef22316150"},
 ]
 identify = [
     {file = "identify-1.4.19-py2.py3-none-any.whl", hash = "sha256:781fd3401f5d2b17b22a8b18b493a48d5d948e3330634e82742e23f9c20234ef"},
