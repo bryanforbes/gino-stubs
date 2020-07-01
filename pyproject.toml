@@ -19,7 +19,7 @@ mypy = ">=0.782"
 typing-extensions = ">=3.7.4"
 sqlalchemy-stubs = "^0.3"
 asyncpg-stubs = {rev = "2e7cec55935dab18f913373fd06a410bc569423b", git = "https://github.com/bryanforbes/asyncpg-stubs.git"}
-importlib_metadata = {version = "^1.6.1", python = "<3.8"}
+importlib_metadata = {version = "^1.7.0", python = "<3.8"}
 
 [tool.poetry.dev-dependencies]
 attrs = ">=18.0"
