@@ -31,4 +31,4 @@ jobs:
         poetry run mypy gino ginomypy
     - name: Test with pytest
       run: |
-        poetry run py.test
+        poetry run py.test -n0 --dist=no
