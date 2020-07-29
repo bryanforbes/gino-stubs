@@ -35,11 +35,12 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install -v
-    - name: Lint with flake8 and mypy
+    - name: Lint with flake8, mypy, and isort
       run: |
         poetry run flake8 gino-stubs ginomypy
         ln -s gino-stubs gino
         poetry run mypy gino ginomypy
+        poetry run isort --check-only gino ginomypy
     - name: Test with pytest
       run: |
         poetry run py.test -n0 --dist=no
