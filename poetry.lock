@@ -43,7 +43,6 @@ typing-extensions = "^3.7.4"
 reference = "2e7cec55935dab18f913373fd06a410bc569423b"
 type = "git"
 url = "https://github.com/bryanforbes/asyncpg-stubs.git"
-
 [[package]]
 category = "dev"
 description = "Atomic file writes."
@@ -670,6 +669,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
 content-hash = "5d292f00decd4506230016a3c7b15596cc8f92a34f88b09902d0869a41ac47c2"
+lock-version = "1.0"
 python-versions = "^3.6.1"
 
 [metadata.files]
