@@ -18,7 +18,7 @@ python = "^3.6.1"
 mypy = ">=0.782"
 typing-extensions = ">=3.7.4"
 sqlalchemy-stubs = "^0.3"
-asyncpg-stubs = {rev = "2e7cec55935dab18f913373fd06a410bc569423b", git = "https://github.com/bryanforbes/asyncpg-stubs.git"}
+asyncpg-stubs = {rev = "f4fa1758009712c822a86ef8b43357187bb134e2", git = "https://github.com/bryanforbes/asyncpg-stubs.git"}
 importlib_metadata = {version = "^1.7.0", python = "<3.8"}
 
 [tool.poetry.dev-dependencies]
@@ -31,7 +31,7 @@ pre-commit = "^2.7"
 pytest = "^6.0"
 pytest-cov = "^2.10"
 pytest-mypy-plugins = "~1.4.0"
-pytest-xdist = "^2.0"
+pytest-xdist = "^2.1"
 py = ">=1.5.2"
 gino = "~1.0.1"
 sqlalchemy = "~1.2.18"
