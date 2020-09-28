@@ -28,7 +28,7 @@ flake8 = "^3.8"
 flake8-bugbear = {version = ">=19.3"}
 flake8-pyi = {version = "^20.5"}
 pre-commit = "^2.7"
-pytest = "^6.0"
+pytest = "^6.1"
 pytest-cov = "^2.10"
 pytest-mypy-plugins = "~1.4.0"
 pytest-xdist = "^2.1"
