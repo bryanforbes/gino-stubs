@@ -35,7 +35,7 @@ pytest-xdist = "^2.1"
 py = ">=1.5.2"
 gino = "~1.0.1"
 sqlalchemy = "~1.2.18"
-isort = "^5.5.4"
+isort = "^5.6.1"
 
 [tool.black]
 line-length = 88
