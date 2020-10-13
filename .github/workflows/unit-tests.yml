@@ -9,7 +9,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8, 3.9]
 
     steps:
     - uses: actions/checkout@v2
@@ -35,7 +35,7 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install -v
-        ./fix-poetry.sh
+        ./fix-site-packages.sh
     - name: Lint with flake8, mypy, and isort
       run: |
         poetry run flake8 gino-stubs ginomypy
