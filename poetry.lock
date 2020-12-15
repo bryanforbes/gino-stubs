@@ -514,7 +514,7 @@ pyyaml = "*"
 
 [[package]]
 name = "pytest-xdist"
-version = "2.1.0"
+version = "2.2.0"
 description = "pytest xdist plugin for distributed testing and loop-on-failing modes"
 category = "dev"
 optional = false
@@ -643,7 +643,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "f652964499b347b60ea08dd15f0a2682016ba35d9902efd50dc6aab4ce8424c5"
+content-hash = "deced9fca462de2648695dfc6c63339628643eaeecdef8ea3788789ce6be6b85"
 
 [metadata.files]
 apipkg = [
@@ -894,8 +894,8 @@ pytest-mypy-plugins = [
     {file = "pytest_mypy_plugins-1.6.1-py3-none-any.whl", hash = "sha256:b7f9c736f498a520c42ab393069b6e272036c2e4409d777403566e353743d603"},
 ]
 pytest-xdist = [
-    {file = "pytest-xdist-2.1.0.tar.gz", hash = "sha256:82d938f1a24186520e2d9d3a64ef7d9ac7ecdf1a0659e095d18e596b8cbd0672"},
-    {file = "pytest_xdist-2.1.0-py3-none-any.whl", hash = "sha256:7c629016b3bb006b88ac68e2b31551e7becf173c76b977768848e2bbed594d90"},
+    {file = "pytest-xdist-2.2.0.tar.gz", hash = "sha256:1d8edbb1a45e8e1f8e44b1260583107fc23f8bc8da6d18cb331ff61d41258ecf"},
+    {file = "pytest_xdist-2.2.0-py3-none-any.whl", hash = "sha256:f127e11e84ad37cc1de1088cb2990f3c354630d428af3f71282de589c5bb779b"},
 ]
 pyyaml = [
     {file = "PyYAML-5.3.1-cp27-cp27m-win32.whl", hash = "sha256:74809a57b329d6cc0fdccee6318f44b9b8649961fa73144a98735b0aaf029f1f"},
@@ -908,6 +908,8 @@ pyyaml = [
     {file = "PyYAML-5.3.1-cp37-cp37m-win_amd64.whl", hash = "sha256:73f099454b799e05e5ab51423c7bcf361c58d3206fa7b0d555426b1f4d9a3eaf"},
     {file = "PyYAML-5.3.1-cp38-cp38-win32.whl", hash = "sha256:06a0d7ba600ce0b2d2fe2e78453a470b5a6e000a985dd4a4e54e436cc36b0e97"},
     {file = "PyYAML-5.3.1-cp38-cp38-win_amd64.whl", hash = "sha256:95f71d2af0ff4227885f7a6605c37fd53d3a106fcab511b8860ecca9fcf400ee"},
+    {file = "PyYAML-5.3.1-cp39-cp39-win32.whl", hash = "sha256:ad9c67312c84def58f3c04504727ca879cb0013b2517c85a9a253f0cb6380c0a"},
+    {file = "PyYAML-5.3.1-cp39-cp39-win_amd64.whl", hash = "sha256:6034f55dab5fea9e53f436aa68fa3ace2634918e8b5994d82f3621c04ff5ed2e"},
     {file = "PyYAML-5.3.1.tar.gz", hash = "sha256:b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"},
 ]
 regex = [
