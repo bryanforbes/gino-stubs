@@ -43,8 +43,8 @@ typing-extensions = "^3.7.4"
 [package.source]
 type = "git"
 url = "https://github.com/bryanforbes/asyncpg-stubs.git"
-reference = "c4aa979077e05dd025219488430da88772b8be4e"
-resolved_reference = "c4aa979077e05dd025219488430da88772b8be4e"
+reference = "387549840fb72e47588e3bf3c8ca83449dedffec"
+resolved_reference = "387549840fb72e47588e3bf3c8ca83449dedffec"
 
 [[package]]
 name = "atomicwrites"
@@ -642,7 +642,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "c339599578035142aed7c6dc7bdfa5c134eabdb70481326a7c384493c3a29618"
+content-hash = "51bae3c3181877483266c2b6a2eb081772b4c240dd8975ce0f2dfb974382d209"
 
 [metadata.files]
 apipkg = [
@@ -907,8 +907,6 @@ pyyaml = [
     {file = "PyYAML-5.3.1-cp37-cp37m-win_amd64.whl", hash = "sha256:73f099454b799e05e5ab51423c7bcf361c58d3206fa7b0d555426b1f4d9a3eaf"},
     {file = "PyYAML-5.3.1-cp38-cp38-win32.whl", hash = "sha256:06a0d7ba600ce0b2d2fe2e78453a470b5a6e000a985dd4a4e54e436cc36b0e97"},
     {file = "PyYAML-5.3.1-cp38-cp38-win_amd64.whl", hash = "sha256:95f71d2af0ff4227885f7a6605c37fd53d3a106fcab511b8860ecca9fcf400ee"},
-    {file = "PyYAML-5.3.1-cp39-cp39-win32.whl", hash = "sha256:ad9c67312c84def58f3c04504727ca879cb0013b2517c85a9a253f0cb6380c0a"},
-    {file = "PyYAML-5.3.1-cp39-cp39-win_amd64.whl", hash = "sha256:6034f55dab5fea9e53f436aa68fa3ace2634918e8b5994d82f3621c04ff5ed2e"},
     {file = "PyYAML-5.3.1.tar.gz", hash = "sha256:b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"},
 ]
 regex = [
