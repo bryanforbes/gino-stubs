@@ -37,13 +37,9 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install -v
-        ./fix-site-packages.sh
-    - name: Lint with flake8, mypy, and isort
+    - name: Pre-commit checks
       run: |
-        poetry run flake8 gino-stubs ginomypy
-        ln -s gino-stubs gino
-        poetry run mypy gino ginomypy
-        poetry run isort --check-only gino ginomypy
+        poetry run pre-commit run --all-files
     - name: Test with pytest
       run: |
         poetry run py.test -n0 --dist=no
