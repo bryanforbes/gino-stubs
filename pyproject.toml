@@ -6,11 +6,8 @@ authors = ["Bryan Forbes <bryan@reigndropsfall.net>"]
 license = "BSD-3-Clause"
 
 packages = [
-	{ include = "ginomypy" }
-]
-include = [
-	"gino-stubs/**/*.pyi",
-	"ginomypy/py.typed"
+  { include = "gino-stubs" },
+  { include = "ginomypy" }
 ]
 
 [tool.poetry.dependencies]
