@@ -24,7 +24,7 @@ black = {version = "^20.8b1", allow-prereleases = true}
 flake8 = "^3.8"
 flake8-bugbear = {version = ">=19.3"}
 flake8-pyi = {version = "^20.10"}
-pre-commit = "^2.9"
+pre-commit = "^2.10"
 pytest = "^6.2"
 pytest-cov = "^2.11"
 pytest-mypy-plugins = "~1.6.1"
