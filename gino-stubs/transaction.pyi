@@ -5,8 +5,8 @@ from asyncpg.transaction import Transaction
 from .engine import GinoConnection
 
 class _Break(BaseException):
-    tx: GinoTransaction = ...
-    commit: bool = ...
+    tx: GinoTransaction
+    commit: bool
     def __init__(self, tx: GinoTransaction, commit: bool) -> None: ...
 
 class GinoTransaction:

@@ -15,8 +15,14 @@ python = "^3.6.1"
 mypy = ">=0.800"
 typing-extensions = ">=3.7.4"
 sqlalchemy-stubs = "^0.4"
-asyncpg-stubs = {rev = "11e06c4dc088bee3715dca62f0019c5edfc4d275", git = "https://github.com/bryanforbes/asyncpg-stubs.git"}
-importlib_metadata = {version = "^1.7.0", python = "<3.8"}
+asyncpg-stubs = {rev = "11e06c4dc088bee3715dca62f0019c5edfc4d275", git = "https://github.com/bryanforbes/asyncpg-stubs.git", optional = true }
+importlib_metadata = {version = "^2.0.0", python = "<3.8"}
+
+[tool.poetry.extras]
+postgresql = ["asyncpg-stubs"]
+postgres = ["asyncpg-stubs"]
+pg = ["asyncpg-stubs"]
+asyncpg = ["asyncpg-stubs"]
 
 [tool.poetry.dev-dependencies]
 attrs = ">=18.0"
@@ -30,8 +36,8 @@ pytest-cov = "^2.11"
 pytest-mypy-plugins = "~1.6.1"
 pytest-xdist = "^2.2"
 py = ">=1.5.2"
-gino = "~1.0.1"
-sqlalchemy = "~1.2.18"
+gino = { git = "https://github.com/python-gino/gino.git", rev = "65ad5ec912e493b3caf9dd982c8d99c4ab88fdc1", extras = ["pg"] }
+sqlalchemy = "~1.3.0"
 isort = "^5.7.0"
 
 [tool.black]

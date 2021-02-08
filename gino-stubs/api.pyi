@@ -31,6 +31,7 @@ from sqlalchemy.sql.expression import Executable
 from sqlalchemy.sql.type_api import TypeEngine
 
 from . import json_support
+from .bakery import _E, BakedQuery, Bakery, _BakeDecorator, _BakeFunc, _BakeModelGetter
 from .declarative import Model as _GinoModel
 from .declarative import declared_attr as _gino_declared_attr
 from .dialects.base import _IterableCursor
@@ -49,6 +50,7 @@ class GinoExecutor(Generic[_T]):
     def return_model(self: '_GE', switch: bool) -> '_GE': ...
     def timeout(self: '_GE', timeout: Optional[int]) -> '_GE': ...
     def load(self: '_GE', value: Any) -> '_GE': ...
+    def execution_options(self: '_GE', **options: Any) -> '_GE': ...
     async def all(self, *multiparams: Any, **params: Any) -> List[_T]: ...
     async def first(self, *multiparams: Any, **params: Any) -> Optional[_T]: ...
     async def one_or_none(self, *multiparams: Any, **params: Any) -> Optional[_T]: ...
@@ -73,8 +75,8 @@ class _GinoBind:
 
 class Gino(_sa.MetaData):
     model_base_classes: ClassVar[Tuple[Type[Any], ...]]
-    query_executor = GinoEngine
-    schema_visitor = GinoSchemaVisitor
+    query_executor: ClassVar[Type[GinoExecutor[Any]]]
+    schema_visitor: ClassVar[Type[GinoSchemaVisitor]]
     no_delegate: ClassVar[Set[str]]
     bind: _GinoBind  # type: ignore
     def __init__(
@@ -250,3 +252,35 @@ class Gino(_sa.MetaData):
     ) -> _IterableCursor[Any]: ...
     def acquire(self, *args: Any, **kwargs: Any) -> _AcquireContext: ...
     def transaction(self, *args: Any, **kwargs: Any) -> GinoTransaction: ...
+    @overload
+    def bake(
+        self,
+        func_or_elem: None = ...,
+        **execution_options: Any,
+    ) -> _BakeDecorator: ...
+    @overload
+    def bake(
+        self,
+        func_or_elem: _E,
+        **execution_options: Any,
+    ) -> BakedQuery[_E]: ...
+    @overload
+    def bake(
+        self,
+        func_or_elem: str,
+        **execution_options: Any,
+    ) -> BakedQuery[TextClause]: ...
+    @overload
+    def bake(
+        self,
+        func_or_elem: _BakeFunc[_E],
+        **execution_options: Any,
+    ) -> BakedQuery[_E]: ...
+    @overload
+    def bake(
+        self,
+        func_or_elem: _BakeFunc[str],
+        **execution_options: Any,
+    ) -> BakedQuery[TextClause]: ...
+    @property
+    def bakery(self) -> Bakery: ...
