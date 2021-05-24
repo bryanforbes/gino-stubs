@@ -502,7 +502,7 @@ pytest = ">=3.10"
 
 [[package]]
 name = "pytest-mypy-plugins"
-version = "1.6.1"
+version = "1.7.0"
 description = "pytest plugin for writing tests for mypy plugins"
 category = "dev"
 optional = false
@@ -646,7 +646,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.2"
-content-hash = "9763cf8a7e326fb8aa76662ec1ca791f162e994ce5656cb48f33553130a95fb5"
+content-hash = "8754563db8ec8bb84dead50431a95a943c7e46ec7ba2854ee9d31b64c06172b2"
 
 [metadata.files]
 apipkg = [
@@ -892,8 +892,8 @@ pytest-forked = [
     {file = "pytest_forked-1.3.0-py2.py3-none-any.whl", hash = "sha256:dc4147784048e70ef5d437951728825a131b81714b398d5d52f17c7c144d8815"},
 ]
 pytest-mypy-plugins = [
-    {file = "pytest-mypy-plugins-1.6.1.tar.gz", hash = "sha256:f73986d4d78057f259518b81b019896985b19a698ce41deb6996ec73c3d7fcc6"},
-    {file = "pytest_mypy_plugins-1.6.1-py3-none-any.whl", hash = "sha256:b7f9c736f498a520c42ab393069b6e272036c2e4409d777403566e353743d603"},
+    {file = "pytest-mypy-plugins-1.7.0.tar.gz", hash = "sha256:55bd91add26adeb00a72112655b0e0e9f092745adff07a6c47a16b67c99e9b8d"},
+    {file = "pytest_mypy_plugins-1.7.0-py3-none-any.whl", hash = "sha256:922abd4ba66e73174aadc89c6f9f2f53ebfe2087d9ab211ef1f47983b040f082"},
 ]
 pytest-xdist = [
     {file = "pytest-xdist-2.2.1.tar.gz", hash = "sha256:718887296892f92683f6a51f25a3ae584993b06f7076ce1e1fd482e59a8220a2"},
