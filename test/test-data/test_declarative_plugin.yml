@@ -17,13 +17,13 @@
         created_at = db.Column(db.DateTime())
 
     async def main() -> None:
-        reveal_type(Model.__table__)  # N: Revealed type is 'sqlalchemy.sql.schema.Table'
+        reveal_type(Model.__table__)  # N: Revealed type is "sqlalchemy.sql.schema.Table"
         model = await Model.create()
-        reveal_type(model.__table__)  # N: Revealed type is 'sqlalchemy.sql.schema.Table'
-        reveal_type(model)  # N: Revealed type is 'main.Model*'
-        reveal_type(model.id)  # N: Revealed type is 'builtins.int*'
-        reveal_type(model.name)  # N: Revealed type is 'builtins.str*'
-        reveal_type(model.created_at)  # N: Revealed type is 'Union[datetime.datetime*, None]'
+        reveal_type(model.__table__)  # N: Revealed type is "sqlalchemy.sql.schema.Table"
+        reveal_type(model)  # N: Revealed type is "main.Model*"
+        reveal_type(model.id)  # N: Revealed type is "builtins.int*"
+        reveal_type(model.name)  # N: Revealed type is "builtins.str*"
+        reveal_type(model.created_at)  # N: Revealed type is "Union[datetime.datetime*, None]"
 
         model = Model()
         model.created_at = datetime.now()
@@ -49,10 +49,10 @@
 
     async def main() -> None:
         model = await Model.create()
-        reveal_type(model)  # N: Revealed type is 'main.Model*'
-        reveal_type(model.id)  # N: Revealed type is 'builtins.int*'
-        reveal_type(model.name)  # N: Revealed type is 'builtins.str*'
-        reveal_type(model.created_at)  # N: Revealed type is 'Union[datetime.datetime*, None]'
+        reveal_type(model)  # N: Revealed type is "main.Model*"
+        reveal_type(model.id)  # N: Revealed type is "builtins.int*"
+        reveal_type(model.name)  # N: Revealed type is "builtins.str*"
+        reveal_type(model.created_at)  # N: Revealed type is "Union[datetime.datetime*, None]"
 
         model = Model()
         model.created_at = datetime.now()
@@ -77,7 +77,7 @@
 
     async def main() -> None:
         await Model.create()  # E: "Type[Model]" has no attribute "create"
-        reveal_type(Model.gino)  # N: Revealed type is 'gino.schema.GinoSchemaVisitor'
+        reveal_type(Model.gino)  # N: Revealed type is "gino.schema.GinoSchemaVisitor"
 
         model = Model()
         model.gino  # E: "Model" has no attribute "gino"

@@ -28,4 +28,4 @@
 
     async def main() -> None:
         children = await Child.load(parent=Model).query.gino.all()
-        reveal_type(children)  # N: Revealed type is 'builtins.list*[main.Child*]'
+        reveal_type(children)  # N: Revealed type is "builtins.list*[main.Child*]"
