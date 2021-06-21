@@ -17,7 +17,7 @@ typing-extensions = ">=3.7.4"
 gino = "~1.0.1"
 importlib_metadata = {version = "^1.7.0", python = "<3.8"}
 sqlalchemy-stubs = "^0.4"
-asyncpg-stubs = {git = "https://github.com/bryanforbes/asyncpg-stubs.git", rev = "ef8c5726dd4f51dd3e7ca0a7f4c13446e27453b9"}
+asyncpg-stubs = {git = "https://github.com/bryanforbes/asyncpg-stubs.git", rev = "0894bcb5f773d413f54bc956b83880f225258337"}
 
 [tool.poetry.dev-dependencies]
 attrs = ">=18.0"
