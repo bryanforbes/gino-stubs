@@ -32,7 +32,7 @@ pytest-mypy-plugins = "~1.7.0"
 pytest-xdist = "^2.3"
 py = ">=1.5.2"
 sqlalchemy = "~1.2.18"
-isort = "^5.9.1"
+isort = "^5.9.3"
 
 [tool.black]
 line-length = 88
