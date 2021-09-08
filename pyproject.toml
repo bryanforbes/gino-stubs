@@ -28,7 +28,7 @@ flake8-pyi = {version = "^20.10"}
 pre-commit = "^2.14"
 pytest = "^6.2"
 pytest-cov = "^2.12"
-pytest-mypy-plugins = "~1.7.0"
+pytest-mypy-plugins = "~1.9.1"
 pytest-xdist = "^2.3"
 py = ">=1.5.2"
 sqlalchemy = "~1.2.18"
