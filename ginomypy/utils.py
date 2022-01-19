@@ -137,7 +137,7 @@ def create_dynamic_class(
 
     class_def.info = info
 
-    obj = ctx.api.named_type('builtins.object')
+    obj = ctx.api.named_type('object')
     info.bases = bases or [obj]
 
     try:
