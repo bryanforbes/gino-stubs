@@ -12,7 +12,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.6.2"
-mypy = ">=0.800"
+mypy = ">=0.931"
 typing-extensions = ">=3.7.4"
 gino = "~1.0.1"
 importlib_metadata = {version = "^1.7.0", python = "<3.8"}
@@ -58,7 +58,7 @@ profile = "black"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-nauto --mypy-ini-file=test/ginomypy.ini"
+addopts = "-nauto --mypy-ini-file=test/ginomypy.ini --mypy-only-local-stub"
 testpaths = ["test"]
 
 [build-system]
