@@ -41,7 +41,7 @@ from .transaction import GinoTransaction
 _T = TypeVar('_T')
 
 class GinoExecutor(Generic[_T]):
-    _GE = TypeVar('_GE', bound='GinoExecutor[_T]')
+    _GE = TypeVar('_GE', bound='GinoExecutor[Any]')
     def __init__(self, query: Executable) -> None: ...
     @property
     def query(self) -> Executable: ...
