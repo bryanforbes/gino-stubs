@@ -47,8 +47,8 @@ typing-extensions = "^4.1.0"
 [package.source]
 type = "git"
 url = "https://github.com/bryanforbes/asyncpg-stubs.git"
-reference = "c5bdd2511a5bee7f01d2340d3e4c8a11d1648f91"
-resolved_reference = "c5bdd2511a5bee7f01d2340d3e4c8a11d1648f91"
+reference = "bb92f810baaa157c3750610a2ac946dfd903a5b8"
+resolved_reference = "bb92f810baaa157c3750610a2ac946dfd903a5b8"
 
 [[package]]
 name = "atomicwrites"
@@ -681,7 +681,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.2"
-content-hash = "a356df98e169dd81ef89dd372eb7d33abbb9dd129c6d792b12c357bc3da55805"
+content-hash = "6f443e24c23394c8d9f311125eaafe278e7aec67ce0d3f88df98d18e6f947299"
 
 [metadata.files]
 apipkg = [
