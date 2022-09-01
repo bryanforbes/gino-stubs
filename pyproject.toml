@@ -21,7 +21,7 @@ asyncpg-stubs = {git = "https://github.com/bryanforbes/asyncpg-stubs.git", rev =
 
 [tool.poetry.dev-dependencies]
 attrs = ">=18.0"
-black = {version = "^22.1", allow-prereleases = true}
+black = {version = "^22.8", allow-prereleases = true}
 flake8 = "^4.0"
 flake8-bugbear = {version = ">=19.3"}
 flake8-pyi = {version = "^20.10"}
